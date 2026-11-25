@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm4q6nqta4710"]
+
+[ext_resource type="PackedScene" uid="uid://dlmls1vdwvj2v" path="res://Components/Enemies/out dated/RangedEnemy.tscn" id="1_p30un"]
+[ext_resource type="Script" uid="uid://g6lam6wh0uy8" path="res://Components/Enemies/WizardEnemy/WizardEnemy.gd" id="2_fp7h3"]
+[ext_resource type="PackedScene" uid="uid://chskwqkhg71td" path="res://Components/Enemies/FastEnemy/FastEnemy.tscn" id="3_f85ia"]
+
+[node name="WizardEnemy" node_paths=PackedStringArray("spawn_points") instance=ExtResource("1_p30un")]
+script = ExtResource("2_fp7h3")
+health_points = 15
+stunn_time = 1.0
+fast_enemy_scene = ExtResource("3_f85ia")
+spawn_points = [null]
+fast_enemy_damage = 14
+fire_rate = 2.0
+bullet_speed = 710
+bullet_damage = 16
+bullet_range = 350
+bullet_scale = 0.8
+move_back_speed_ratio = 0.0
+move_back_range_ratio = 0.0
+ranged_type = "wizard"
+speed = 150
+max_health = 90
+main_color = Color(0.355036, 0.225162, 0.439453, 1)
+
+[node name="Sprite" parent="Coll" index="1"]
+rotation = 0.261799
+
+[node name="Polygon2D4" parent="Coll/Sprite" index="0"]
+color = Color(0.286275, 0.203922, 0.45098, 1)
+polygon = PackedVector2Array(-18.0297, -33.1361, -8.19533, -41.4201, 20, 0, -4.9172, 41.4201, -18.0297, 33.1361)
+
+[node name="Polygon2D5" parent="Coll/Sprite" index="1"]
+position = Vector2(30.7692, 0)
+color = Color(0.286275, 0.203922, 0.45098, 1)
+polygon = PackedVector2Array(-23.6026, -34.7929, -13.1125, -16.568, 3.27817, -20.71, 15.735, 0, 3.27817, 20.71, -13.1125, 16.568, -23.6026, 34.7929, -45.8938, 0)
+
+[node name="Polygon2D2" parent="Coll/Sprite" index="2"]
+color = Color(0.419608, 0.262745, 0.521569, 1)
+
+[node name="AnimationPlayer" parent="." index="4"]
+speed_scale = 1.2
+
+[node name="HPBar" parent="." index="5"]
+metadata/_edit_use_anchors_ = true

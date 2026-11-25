@@ -1,0 +1,293 @@
+[gd_scene format=3 uid="uid://7ca2qkndcnlv"]
+
+[ext_resource type="PackedScene" uid="uid://cayl03by5y4h0" path="res://Components/Enemies/RangeEnemy/RangeEnemy.tscn" id="1_vix4g"]
+[ext_resource type="Script" uid="uid://g6lam6wh0uy8" path="res://Components/Enemies/WizardEnemy/WizardEnemy.gd" id="2_fufhf"]
+[ext_resource type="PackedScene" uid="uid://dpo73vtxrutpr" path="res://Components/Enemies/ExplodedEnemy/ExplodedEnemy.tscn" id="3_fufhf"]
+[ext_resource type="Texture2D" uid="uid://knl2o3tpeyxy" path="res://Assets/Sprites/cyrcle512.png" id="4_hvhhd"]
+
+[sub_resource type="Animation" id="Animation_ehf4s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.192157)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wb6x6"]
+resource_name = "heal"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(4.28709, 8.87656),
+"update": 0,
+"values": [Vector2(0.998, 0.998), Vector2(1.426, 1.426)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.9),
+"transitions": PackedFloat32Array(8.28211, 0.594603, 8.28211),
+"update": 0,
+"values": [Color(0.420333, 0.26, 0.52, 0), Color(0.420333, 0.26, 0.52, 0.239216), Color(0.420333, 0.26, 0.52, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmqhj"]
+_data = {
+&"RESET": SubResource("Animation_ehf4s"),
+&"heal": SubResource("Animation_wb6x6")
+}
+
+[sub_resource type="Animation" id="Animation_jcwk0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -60)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.261799]
+}
+
+[sub_resource type="Animation" id="Animation_10dom"]
+resource_name = "attack"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1.68, -41.945), Vector2(49.1667, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0872665, 0.310669]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.261799]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytjqd"]
+_data = {
+&"RESET": SubResource("Animation_jcwk0"),
+&"attack": SubResource("Animation_10dom")
+}
+
+[node name="NewWizardEnemy" unique_id=1763604586 node_paths=PackedStringArray("spawn_points", "spawn_ultimate_points") instance=ExtResource("1_vix4g")]
+script = ExtResource("2_fufhf")
+health_points = 15
+health_ultimate_points = 25
+stunn_time = 1.0
+fast_enemy_scene = ExtResource("3_fufhf")
+spawn_points = [NodePath("Coll/SpawnPoints/Marker2D3")]
+fast_enemy_damage = 15
+spawn_ultimate_points = [NodePath("Coll/SpawnPoints/Marker2D"), NodePath("Coll/SpawnPoints/Marker2D2")]
+move_back_speed_ratio = 0.0
+move_back_range_ratio = 0.0
+fire_rate = 2.0
+ultimate_shoot_charge_rate = 15
+ranged_type = "wizard"
+bullet_speed = 710
+bullet_damage = 16
+bullet_range = 350
+bullet_scale = 0.8
+speed = 130
+max_health = 45
+bars_cont_hight = 100
+main_color = Color(0.419608, 0.258824, 0.521569, 1)
+new_path_cooldown = 1.0
+ultimate_color = Color(0.419608, 0.164706, 0.447059, 1)
+ultimate_charger_points = 3
+
+[node name="UltimateParticles" parent="." index="1" unique_id=1450854342]
+modulate = Color(0.313726, 0.294118, 0.862745, 1)
+z_index = 0
+
+[node name="Coll" parent="." index="2" unique_id=902011122]
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Coll" index="0" unique_id=1995130392]
+visible = false
+modulate = Color(1, 1, 1, 0.192157)
+texture = ExtResource("4_hvhhd")
+metadata/_edit_lock_ = true
+
+[node name="HealerAnimator" type="AnimationPlayer" parent="Coll/Sprite2D" index="0" unique_id=1006790142]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_rmqhj")
+
+[node name="SpawnPoints" type="Node2D" parent="Coll" index="1" unique_id=465075971]
+
+[node name="Marker2D" type="Marker2D" parent="Coll/SpawnPoints" index="0" unique_id=213828803]
+position = Vector2(75, -80)
+
+[node name="Marker2D2" type="Marker2D" parent="Coll/SpawnPoints" index="1" unique_id=765268374]
+position = Vector2(75, 80)
+
+[node name="Marker2D3" type="Marker2D" parent="Coll/SpawnPoints" index="2" unique_id=1404226253]
+position = Vector2(100, 0)
+
+[node name="Sprite" parent="Coll" index="2" unique_id=1871191322]
+rotation = 0.261799
+
+[node name="Warn" type="Node2D" parent="Coll/Sprite" index="0" unique_id=558503581]
+position = Vector2(0, -60)
+scale = Vector2(1.2, 1.2)
+
+[node name="WarnAnimator" type="AnimationPlayer" parent="Coll/Sprite/Warn" index="0" unique_id=1751098233]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ytjqd")
+speed_scale = 0.85
+
+[node name="Normal" type="Node2D" parent="Coll/Sprite/Warn" index="1" unique_id=732567193]
+
+[node name="Polygon2D" type="Polygon2D" parent="Coll/Sprite/Warn/Normal" index="0" unique_id=1850185890]
+color = Color(0.419608, 0.262745, 0.521569, 1)
+polygon = PackedVector2Array(-36, 4, 0.127167, 4, 76, 4, 76, -4, -36, -4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Coll/Sprite/Warn/Normal" index="1" unique_id=125870208]
+color = Color(0.286275, 0.203922, 0.45098, 1)
+polygon = PackedVector2Array(46.6667, 0, 80, 12, 90, 0, 80, -12)
+
+[node name="Polygon2D4" parent="Coll/Sprite/Normal" index="0"]
+color = Color(0.419608, 0.258824, 0.521569, 1)
+polygon = PackedVector2Array(-18.0297, -33.1361, -8.19533, -41.4201, 20, 0, -8.19529, 41.4201, -18.0297, 33.1361, -18.0297, -17.0733)
+
+[node name="Polygon2D5" parent="Coll/Sprite/Normal" index="1"]
+position = Vector2(40, 0)
+color = Color(0.419608, 0.258824, 0.521569, 1)
+polygon = PackedVector2Array(-13.1125, -16.568, 3.27817, -20.71, 15.735, 0, 3.27817, 20.71, -13.1125, 16.568, -22.9469, 28.9941, -37.6985, 0.0455627, -22.9469, -28.9941)
+
+[node name="Polygon2D2" parent="Coll/Sprite/Normal" index="2"]
+color = Color(0.286275, 0.203922, 0.447059, 1)
+
+[node name="CollisionShape2D" parent="Coll/MoveRange" index="0"]
+z_index = -3
+
+[node name="BarsContainer" parent="." index="4" unique_id=851440268]
+visible = false
+z_index = 0
+offset_right = 69.0
+offset_bottom = 4.045
+
+[node name="HPBar" parent="BarsContainer" index="0" unique_id=532325415]
+z_index = 3785
+
+[node name="UltimateBar" parent="BarsContainer" index="1" unique_id=439489553]
+custom_minimum_size = Vector2(80, 12)
+max_value = 5.0
+step = 0.01
+value = 2.37
+
+[node name="AttackCooldownTimer" type="Timer" parent="Timers" parent_id_path=PackedInt32Array(2139744350) index="0" unique_id=191004252]
+unique_name_in_owner = true
+
+[node name="FastEnemyCooldown" type="Timer" parent="Timers" parent_id_path=PackedInt32Array(2139744350) index="1" unique_id=114907977]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timers/AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/FastEnemyCooldown" to="." method="_on_fast_enemy_cooldown_timeout"]

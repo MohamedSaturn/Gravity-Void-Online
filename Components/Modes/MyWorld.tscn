@@ -1,0 +1,801 @@
+[gd_scene format=3 uid="uid://cs7518nn5s1ek"]
+
+[ext_resource type="Script" uid="uid://cq8pwk2h5ldyt" path="res://Components/Modes/MyWorld.gd" id="1_l4vhh"]
+[ext_resource type="PackedScene" uid="uid://d02r231secnym" path="res://Components/PLayer/Player.tscn" id="2_80df2"]
+[ext_resource type="PackedScene" uid="uid://pb078acks2mm" path="res://Components/UI/MyWorldUI/PauseDialog.tscn" id="4_o3f1e"]
+[ext_resource type="Theme" uid="uid://cmna0g20fqtvi" path="res://Assets/Res/GameTheme.tres" id="4_ww57g"]
+[ext_resource type="PackedScene" uid="uid://cvgglf0ulkmiy" path="res://Components/UI/MyWorldUI/Time.tscn" id="5_gpbf5"]
+[ext_resource type="Script" uid="uid://c0ieow2j685q1" path="res://Components/Modes/RoundsManager.gd" id="7_1200b"]
+[ext_resource type="PackedScene" uid="uid://if54kmj10seq" path="res://Components/JoyStick/joystick.tscn" id="7_auh0x"]
+[ext_resource type="Script" uid="uid://bvcmav0cbag5c" path="res://Components/Modes/TweenManager.gd" id="8_7hh2w"]
+[ext_resource type="StyleBox" uid="uid://625te4uueyes" path="res://Assets/Res/background.tres" id="8_auh0x"]
+[ext_resource type="PackedScene" uid="uid://cwmdqr2mvkj6n" path="res://Components/UI/MyWorldUI/DeathDialog.tscn" id="8_oss6a"]
+[ext_resource type="PackedScene" uid="uid://br38mdkrq7btq" path="res://Components/Enemies/SpearEnemy/SpearEnemy.tscn" id="8_rtbnn"]
+[ext_resource type="PackedScene" uid="uid://cayl03by5y4h0" path="res://Components/Enemies/RangeEnemy/RangeEnemy.tscn" id="8_tdu3q"]
+[ext_resource type="PackedScene" uid="uid://da4wa3de367t4" path="res://Components/UI/MyWorldUI/NumPopup.tscn" id="8_wiu2e"]
+[ext_resource type="PackedScene" uid="uid://dqrsh10wl6dv6" path="res://Components/Explosions/ExplodePar.tscn" id="9_1200b"]
+[ext_resource type="PackedScene" uid="uid://spy3w011amj1" path="res://Components/Enemies/SniperEnemy/NewSniperEnemy.tscn" id="9_lfx5m"]
+[ext_resource type="PackedScene" uid="uid://d0vnwxa0m2i01" path="res://Components/PLayer/Items/sword.tscn" id="11_0uov5"]
+[ext_resource type="PackedScene" uid="uid://bmpq0j1up17d0" path="res://Components/Enemies/FastRangeEnemy/NewFastRangeEnemy.tscn" id="11_yph4t"]
+[ext_resource type="PackedScene" uid="uid://7ca2qkndcnlv" path="res://Components/Enemies/WizardEnemy/NewWizardEnemy.tscn" id="12_eflpp"]
+[ext_resource type="Texture2D" uid="uid://ciimcmc1xmhvs" path="res://Assets/GIU/attack_mele.png" id="16_auh77"]
+[ext_resource type="Texture2D" uid="uid://cm0atowmfxsgf" path="res://Assets/Sprites/gadgetbase.png" id="16_m03hx"]
+[ext_resource type="Texture2D" uid="uid://doawbsdupp5r" path="res://Assets/Sprites/gadgetdash.png" id="17_8si6f"]
+[ext_resource type="PackedScene" uid="uid://noqygyyxt1i2" path="res://Components/Explosions/shoot_part.tscn" id="18_eflpp"]
+[ext_resource type="Script" uid="uid://cdwujxdwwij7c" path="res://Components/UI/MyWorldUI/PauseManager.gd" id="22_xkaqy"]
+[ext_resource type="PackedScene" uid="uid://vew1x8eh2o7" path="res://Components/JoyStick/dash_button.tscn" id="23_lfx5m"]
+[ext_resource type="Script" uid="uid://d0lf8ou5meaf5" path="res://Components/JoyStick/dash_button.gd" id="24_yph4t"]
+[ext_resource type="Texture2D" uid="uid://knl2o3tpeyxy" path="res://Assets/Sprites/cyrcle512.png" id="25_drc7k"]
+[ext_resource type="PackedScene" uid="uid://dbc63rkkq4ako" path="res://Components/JoyStick/ultimate_joystick.tscn" id="27_tdu3q"]
+[ext_resource type="Texture2D" uid="uid://dtyqlbnuta8pc" path="res://Assets/Sprites/auto_aim.png" id="28_lfx5m"]
+[ext_resource type="Script" uid="uid://ckysrnxxwar1q" path="res://Components/PLayer/Camera.gd" id="37_yph4t"]
+
+[sub_resource type="Environment" id="Environment_g8ir7"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 2.3
+glow_levels/2 = 5.0
+glow_levels/3 = 11.0
+glow_levels/4 = 0.0
+glow_normalized = true
+glow_intensity = 2.04
+glow_strength = 0.66
+glow_bloom = 0.58
+glow_hdr_threshold = 1.08
+glow_hdr_scale = 1.54
+glow_hdr_luminance_cap = 57.73
+glow_map_strength = 0.51
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 2.47
+fog_density = 1.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0bpr1"]
+vertices = PackedVector2Array(1318, 518, -1318, 518, -1318, -518, 1318, -518)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1408, -608, 1408, 608, -1408, 608, -1408, -608)])
+agent_radius = 90.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_auh0x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_drc7k"]
+font_size = 33
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxe1x"]
+radius = 50.0
+
+[sub_resource type="Animation" id="Animation_8si6f"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_tdu3q"]
+resource_name = "ability_press"
+length = 0.1
+
+[sub_resource type="Animation" id="Animation_lfx5m"]
+resource_name = "auto_press"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%AutoAimBtn/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.93, 0.93)]
+}
+
+[sub_resource type="Animation" id="Animation_m03hx"]
+resource_name = "swap_press"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%SwapTouchButton:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.93, 0.93)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_by222"]
+_data = {
+&"RESET": SubResource("Animation_8si6f"),
+&"ability_press": SubResource("Animation_tdu3q"),
+&"auto_press": SubResource("Animation_lfx5m"),
+&"swap_press": SubResource("Animation_m03hx")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yph4t"]
+radius = 126.13
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1200b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lfx5m"]
+font_size = 33
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkaqy"]
+font_size = 37
+font_color = Color(0.923828, 0.923828, 0.923828, 1)
+outline_color = Color(0, 0, 0, 0.0980392)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.121569)
+
+[sub_resource type="Animation" id="Animation_0uov5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RoundsNode/RoundsText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RoundsNode/RoundsText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoundsNode:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoundsNode:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(780, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_drc7k"]
+resource_name = "start_round"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RoundsNode/RoundsText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RoundsNode/RoundsText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 3),
+"transitions": PackedFloat32Array(1, 4.43828, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.454902), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoundsNode:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoundsNode:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(0.29730183, 1),
+"update": 0,
+"values": [Vector2(780, 150), Vector2(780, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7hh2w"]
+_data = {
+&"RESET": SubResource("Animation_0uov5"),
+&"start_round": SubResource("Animation_drc7k")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6igsx"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.0738, 0.11628, 0.18, 1)
+border_color = Color(0.239583, 0.239583, 0.239583, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvm03"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m03hx"]
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxe1x"]
+bg_color = Color(0.333595, 0.733569, 0.741536, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ggpi"]
+bg_color = Color(0.188235, 0.807843, 0.411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qgo6"]
+bg_color = Color(0.235294, 0.160784, 0.839216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1200b"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0.152941)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_wuvfh"]
+line_spacing = 0.025
+paragraph_spacing = -2.375
+font_size = 25
+outline_color = Color(0.0852864, 0.0852864, 0.0852864, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.360784)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxe1x"]
+font_size = 33
+
+[node name="Map" type="Node2D" unique_id=1818249379]
+script = ExtResource("1_l4vhh")
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=763658315]
+environment = SubResource("Environment_g8ir7")
+
+[node name="RoundsManager" type="Node" parent="." unique_id=783120628 node_paths=PackedStringArray("spawn_points", "player", "rounds_text_anim")]
+unique_name_in_owner = true
+script = ExtResource("7_1200b")
+ranged_enemy_scene = ExtResource("8_tdu3q")
+sniper_enemy_scene = ExtResource("9_lfx5m")
+spear_enemy_scene = ExtResource("8_rtbnn")
+fast_ranged_enemy_scene = ExtResource("11_yph4t")
+wizard_enemy_scene = ExtResource("12_eflpp")
+spawn_points = [NodePath("../Spawners/SpawnPoint1"), NodePath("../Spawners/SpawnPoint2"), NodePath("../Spawners/SpawnPoint3"), NodePath("../Spawners/SpawnPoint4"), NodePath("../Spawners/SpawnPoint5"), NodePath("../Spawners/SpawnPoint6"), NodePath("../Spawners/SpawnPoint7"), NodePath("../Spawners/SpawnPoint8")]
+player = NodePath("../Player")
+rounds_text_anim = NodePath("../GUI/Control/MAIN/Control/RoundsTextAnim")
+base_enemy_count = 2
+
+[node name="TweenManager" type="Node" parent="." unique_id=788521515]
+unique_name_in_owner = true
+script = ExtResource("8_7hh2w")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=40616700]
+zoom = Vector2(0.55, 0.55)
+limit_enabled = false
+position_smoothing_speed = 2.0
+rotation_smoothing_speed = 50.0
+script = ExtResource("37_yph4t")
+metadata/_edit_lock_ = true
+
+[node name="WallColor2" type="Polygon2D" parent="." unique_id=1298659710]
+unique_name_in_owner = true
+visible = false
+z_index = -3
+scale = Vector2(0.7, 0.7)
+color = Color(0.0703, 0.08626, 0.19, 1)
+polygon = PackedVector2Array(-1691.4285, 731.4285, -1691.4285, -731.4285, 1691.4285, -731.4285, 1691.4285, 731.4285, -1691.4285, 731.4285, 4571.43, 4571.43, 4571.43, -4571.43, -4571.43, -4571.43, -4571.43, 4571.43, 4571.43, 4571.43)
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="Polygon2D" parent="." unique_id=2035448353]
+z_index = -10
+position = Vector2(-349.00098, -386)
+scale = Vector2(1.24738, 1)
+color = Color(0.0862745, 0.105882, 0.231373, 1)
+polygon = PackedVector2Array(3189.886, -2802, 3313.345, 3993, -2544.5332, 4172, -2441.9182, -2956)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." unique_id=1691063514 instance=ExtResource("2_80df2")]
+unique_name_in_owner = true
+collision_layer = 128
+max_speed = 190
+acceleration = 2500
+friction = 1700
+damage_time = 0.1
+num_popup = ExtResource("8_wiu2e")
+particle_scene = ExtResource("9_1200b")
+attack_type = "mele"
+bullet_speed = 810
+bullet_scale = 1.1
+bullet_speed_scale = 0.9
+shoot_part = ExtResource("18_eflpp")
+sword_damage = 25
+sword_health_attack = 5
+sword_attack_cooldown = 0.33
+sword_scene = ExtResource("11_0uov5")
+dash_cooldown_time = 0.15
+dash_fragment_req = 5
+dash_speed = 900
+popup_dash_color = Color(0.163693, 0.653802, 0.663411, 1)
+popup_damage_color = Color(0.882161, 0.451993, 0.451993, 1)
+popup_enemy_damaged_color = Color(0.94, 0.930086, 0.846, 1)
+popup_damage_wow_color = Color(0.66, 0.62381, 0.3498, 1)
+popup_health_color = Color(0.533333, 0.666667, 0.466667, 1)
+popup_ability_charged_color = Color(0.290196, 0.235294, 0.729412, 1)
+platform_type = "Windows"
+ability_modulate = Color(0.290196, 0.235294, 0.729412, 1)
+ability_max_charge = 30
+bullet_speed_ability_ss = 1.8
+fire_rate_ability_ss = 0.5
+spread_angle_ss = 20
+bullet_damage_main_multi = 18
+bullet_damage_spread_multi = 18
+bullet_scale_ability_ss = 1.2
+bullet_anim_scale_speed_ss = 0.7
+max_speed_ability_oo = 1.5
+bullet_speed_ability_oo = 1.5
+bullet_damage_ability_oo = 1.0
+fire_rate_ability_oo = 0.5
+damage_scale_ability_oo = 1.0
+bullet_scale_ability_oo = 1.3
+spread_angle_m_oo = 9
+bullet_speed_ability_hh = 2.3
+bullet_damage_ability_hh = 1.7
+fire_rate_ability_hh = 0.33
+bullet_scale_ability_hh = 1.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=56850017]
+navigation_polygon = SubResource("NavigationPolygon_0bpr1")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="StaticBody2D" parent="NavigationRegion2D" unique_id=573802728 groups=["collisions"]]
+unique_name_in_owner = true
+z_index = -2
+scale = Vector2(0.7, 0.7)
+disable_mode = 1
+collision_layer = 255
+collision_mask = 255
+physics_material_override = SubResource("PhysicsMaterial_auh0x")
+metadata/_edit_lock_ = true
+
+[node name="WallCollision" type="CollisionPolygon2D" parent="NavigationRegion2D/Wall" unique_id=686209117]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-2011.4285, 868.57135, -2011.4285, -868.57135, 2011.4285, -868.57135, 2011.4285, 868.57135, -2011.4285, 868.57135, 4571.43, 4571.43, 4571.43, -4571.43, -4571.43, -4571.43, -4571.43, 4571.43, 4571.43, 4571.43)
+metadata/_edit_lock_ = true
+
+[node name="WallColor" type="Polygon2D" parent="NavigationRegion2D/Wall" unique_id=942673870]
+unique_name_in_owner = true
+z_index = -3
+color = Color(0.0703, 0.08626, 0.19, 1)
+polygon = PackedVector2Array(-2011.4285, 868.57135, -2011.4285, -868.57135, 2011.4285, -868.57135, 2011.4285, 868.57135, -2011.4285, 868.57135, 4571.43, 4571.43, 4571.43, -4571.43, -4571.43, -4571.43, -4571.43, 4571.43, 4571.43, 4571.43)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="NavigationRegion2D/Wall/WallColor" unique_id=1249146639]
+offset_left = -5595.7144
+offset_top = 21.428574
+offset_right = -5287.7144
+offset_bottom = 74.42857
+text = "how did you get here?"
+label_settings = SubResource("LabelSettings_drc7k")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1228305688]
+
+[node name="Control" type="Control" parent="GUI" unique_id=1074142964]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ww57g")
+metadata/_edit_lock_ = true
+
+[node name="MAIN" type="MarginContainer" parent="GUI/Control" unique_id=421538376]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="JoystickControl" type="Control" parent="GUI/Control/MAIN" unique_id=412907308]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="MoveJoystick" parent="GUI/Control/MAIN/JoystickControl" unique_id=235426945 instance=ExtResource("7_auh0x")]
+unique_name_in_owner = true
+modulate = Color(0.463749, 0.716895, 0.861328, 1)
+position = Vector2(180, 500)
+rotation = 3.14159
+metadata/_edit_lock_ = true
+
+[node name="AimJoystick" parent="GUI/Control/MAIN/JoystickControl" unique_id=370749150 instance=ExtResource("7_auh0x")]
+unique_name_in_owner = true
+modulate = Color(0.8, 0.397978, 0.376471, 1)
+position = Vector2(1385, 500)
+joy_type = "aim"
+metadata/_edit_lock_ = true
+
+[node name="UltimateJoystick" parent="GUI/Control/MAIN/JoystickControl" unique_id=1633809608 instance=ExtResource("27_tdu3q")]
+unique_name_in_owner = true
+position = Vector2(1141.91, 374.355)
+joy_type = "ult"
+metadata/_edit_lock_ = true
+
+[node name="DashButton" parent="GUI/Control/MAIN/JoystickControl" unique_id=852909419 instance=ExtResource("23_lfx5m")]
+unique_name_in_owner = true
+position = Vector2(1384.0001, 310)
+script = ExtResource("24_yph4t")
+metadata/_edit_lock_ = true
+
+[node name="SwapTouchButton" type="TouchScreenButton" parent="GUI/Control/MAIN/JoystickControl/DashButton" unique_id=2024387491]
+unique_name_in_owner = true
+modulate = Color(0.95, 0.95, 0.95, 1)
+shape = SubResource("CircleShape2D_nxe1x")
+
+[node name="SwapPress" type="AnimationPlayer" parent="GUI/Control/MAIN/JoystickControl/DashButton/SwapTouchButton" unique_id=1199904915]
+unique_name_in_owner = true
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_by222")
+
+[node name="DashPregressBar" type="TextureProgressBar" parent="GUI/Control/MAIN/JoystickControl/DashButton/SwapTouchButton" unique_id=1754338538]
+unique_name_in_owner = true
+offset_left = -54.8064
+offset_top = -54.3785
+offset_right = 457.194
+offset_bottom = 457.621
+scale = Vector2(0.19, 0.19)
+pivot_offset = Vector2(7.27246, 7.27246)
+step = 0.01
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("16_m03hx")
+texture_progress = ExtResource("17_8si6f")
+tint_under = Color(0.67, 0.67, 0.67, 1)
+metadata/_edit_lock_ = true
+
+[node name="SwipeAttackTouchBtn" type="TouchScreenButton" parent="GUI/Control/MAIN/JoystickControl" unique_id=310233245]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.705078, 0.181319, 0.318397, 1)
+position = Vector2(1292, 143)
+scale = Vector2(0.475, 0.475)
+texture_normal = ExtResource("16_auh77")
+metadata/_edit_lock_ = true
+
+[node name="AutoAimBtn" type="TouchScreenButton" parent="GUI/Control/MAIN/JoystickControl" unique_id=743219606]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(307.58, 601.92)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("CircleShape2D_yph4t")
+metadata/_edit_lock_ = true
+
+[node name="AutoPress" type="AnimationPlayer" parent="GUI/Control/MAIN/JoystickControl/AutoAimBtn" unique_id=616162083]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_by222")
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/Control/MAIN/JoystickControl/AutoAimBtn" unique_id=88838136]
+texture = ExtResource("28_lfx5m")
+
+[node name="Pause" type="Label" parent="GUI/Control/MAIN" unique_id=1088394788]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1200b")
+text = "Pause"
+label_settings = SubResource("LabelSettings_lfx5m")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="PauseBtn" type="Button" parent="GUI/Control/MAIN/Pause" unique_id=750542196]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+metadata/_edit_lock_ = true
+
+[node name="Fps" type="Label" parent="GUI/Control/MAIN" unique_id=763327572]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 22
+text = "FPS:60"
+label_settings = SubResource("LabelSettings_lfx5m")
+
+[node name="Control" type="Control" parent="GUI/Control/MAIN" unique_id=884635398]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="RoundsNode" type="Node2D" parent="GUI/Control/MAIN/Control" unique_id=625484792]
+unique_name_in_owner = true
+position = Vector2(780, 20)
+metadata/_edit_lock_ = true
+
+[node name="RoundsText" type="Label" parent="GUI/Control/MAIN/Control/RoundsNode" unique_id=1254413880]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -22.0
+offset_right = 63.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Round 1"
+label_settings = SubResource("LabelSettings_xkaqy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundsTextAnim" type="AnimationPlayer" parent="GUI/Control/MAIN/Control" unique_id=2032987491]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_7hh2w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Control/MAIN" unique_id=2014957268]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 9
+
+[node name="Panel" type="PanelContainer" parent="GUI/Control/MAIN/HBoxContainer" unique_id=295148212]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6igsx")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Control/MAIN/HBoxContainer/Panel" unique_id=1452007503]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -2
+metadata/_edit_lock_ = true
+
+[node name="Time" parent="GUI/Control/MAIN/HBoxContainer/Panel/VBoxContainer" unique_id=2096662048 instance=ExtResource("5_gpbf5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vvm03")
+text = "6:66"
+label_settings = SubResource("LabelSettings_m03hx")
+
+[node name="DashBar" type="ProgressBar" parent="GUI/Control/MAIN/HBoxContainer" unique_id=1174172661]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(130, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/background = ExtResource("8_auh0x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nxe1x")
+value = 50.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="GUI/Control/MAIN/HBoxContainer" unique_id=1896960699]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = ExtResource("8_auh0x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8ggpi")
+value = 50.0
+show_percentage = false
+
+[node name="UltBar" type="ProgressBar" parent="GUI/Control/MAIN/HBoxContainer" unique_id=1232257992]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(130, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/background = ExtResource("8_auh0x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0qgo6")
+value = 50.0
+show_percentage = false
+
+[node name="DebugAbi" type="Label" parent="GUI/Control" unique_id=97382387]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = 347.0
+offset_right = 87.0
+offset_bottom = 373.0
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "FPS:60"
+
+[node name="DebugDash" type="Label" parent="GUI/Control" unique_id=1571351615]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -268.0
+offset_right = 379.0
+offset_bottom = 305.0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_1200b")
+text = "asdsfadsfdsafdsfdasfdsfdsafdsafdsafdsfdsafd"
+label_settings = SubResource("LabelSettings_wuvfh")
+autowrap_mode = 3
+
+[node name="DeathDialog" parent="GUI/Control" unique_id=857954736 instance=ExtResource("8_oss6a")]
+unique_name_in_owner = true
+layout_mode = 1
+mouse_filter = 2
+color = Color(0, 0, 0, 0.360784)
+metadata/_edit_lock_ = true
+
+[node name="PauseManager" type="ColorRect" parent="GUI/Control" unique_id=830162359]
+unique_name_in_owner = true
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("22_xkaqy")
+metadata/_edit_lock_ = true
+
+[node name="PauseDialog" parent="GUI/Control/PauseManager" unique_id=255241529 instance=ExtResource("4_o3f1e")]
+unique_name_in_owner = true
+top_level = true
+layout_mode = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="timer_label" type="Label" parent="GUI" unique_id=1221397799]
+unique_name_in_owner = true
+visible = false
+offset_left = 1160.0
+offset_top = 64.0
+offset_right = 1282.0
+offset_bottom = 104.0
+text = "time"
+label_settings = SubResource("LabelSettings_nxe1x")
+metadata/_edit_lock_ = true
+
+[node name="Spawners" type="Node2D" parent="." unique_id=1853688979]
+metadata/_edit_lock_ = true
+
+[node name="SpawnTimer" type="Timer" parent="Spawners" unique_id=1475861694]
+unique_name_in_owner = true
+
+[node name="SpawnPoint1" type="Marker2D" parent="Spawners" unique_id=2012436238]
+unique_name_in_owner = true
+position = Vector2(352, 384)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint2" type="Marker2D" parent="Spawners" unique_id=1637719863]
+unique_name_in_owner = true
+position = Vector2(352, -384)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint3" type="Marker2D" parent="Spawners" unique_id=1773788659]
+unique_name_in_owner = true
+position = Vector2(1056, 384)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint4" type="Marker2D" parent="Spawners" unique_id=1495507819]
+unique_name_in_owner = true
+position = Vector2(-352, 384)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint5" type="Marker2D" parent="Spawners" unique_id=906085105]
+unique_name_in_owner = true
+position = Vector2(-1056, -384)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint6" type="Marker2D" parent="Spawners" unique_id=232731233]
+unique_name_in_owner = true
+position = Vector2(-352, -384)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint7" type="Marker2D" parent="Spawners" unique_id=340600375]
+unique_name_in_owner = true
+position = Vector2(1056, -384)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint8" type="Marker2D" parent="Spawners" unique_id=1480865210]
+unique_name_in_owner = true
+position = Vector2(-1056, 384)
+gizmo_extents = 50.0
+
+[node name="HarderTimer" type="Timer" parent="Spawners" unique_id=654187392]
+wait_time = 30.0
+autostart = true
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=223937962]
+visible = false
+color = Color(0.209, 0.2318, 0.38, 1)
+polygon = PackedVector2Array(-749, -437, -1366, 326, -582, 670, -603, 17, -345, -296, -497, -801, -1063, -700)
+
+[node name="MoveSprite" type="Sprite2D" parent="." unique_id=1412787461]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.767578, 1, 0.924644, 0.192157)
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("25_drc7k")
+
+[node name="AimSprite" type="Sprite2D" parent="." unique_id=1781516962]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.814453, 0, 0, 0.192157)
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("25_drc7k")
+
+[connection signal="pressed" from="GUI/Control/MAIN/JoystickControl/DashButton/SwapTouchButton" to="Player" method="_on_swap_touch_button_pressed"]
+[connection signal="pressed" from="GUI/Control/MAIN/JoystickControl/SwipeAttackTouchBtn" to="Player" method="_on_swipe_attack_touch_btn_pressed"]
+[connection signal="gui_input" from="GUI/Control/MAIN/Pause" to="GUI/Control/PauseManager" method="_on_pause_gui_input"]
+[connection signal="pressed" from="GUI/Control/MAIN/Pause/PauseBtn" to="GUI/Control/PauseManager" method="_on_pause_btn_pressed"]
+[connection signal="value_changed" from="GUI/Control/MAIN/HBoxContainer/UltBar" to="Player" method="_on_ult_bar_value_changed"]
+[connection signal="visibility_changed" from="GUI/Control/DeathDialog" to="." method="_on_death_dialog_visibility_changed"]
+[connection signal="continue_pressed" from="GUI/Control/PauseManager/PauseDialog" to="GUI/Control/PauseManager" method="_on_pause_dialog_continue_pressed"]
+[connection signal="timeout" from="Spawners/HarderTimer" to="." method="_on_harder_timer_timeout"]

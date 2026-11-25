@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://pb078acks2mm"]
+
+[ext_resource type="Theme" uid="uid://cmna0g20fqtvi" path="res://Assets/Res/GameTheme.tres" id="1_kh87t"]
+[ext_resource type="Script" uid="uid://cbwywjmspem5m" path="res://Components/UI/MyWorldUI/PauseDialog.gd" id="2_6x3do"]
+[ext_resource type="StyleBox" uid="uid://cyxwvv63falpw" path="res://Assets/Res/PowerControleBox.tres" id="3_tj61j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tu22f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dy8ed"]
+font_size = 44
+
+[node name="PauseDialog" type="PanelContainer" unique_id=308965440]
+custom_minimum_size = Vector2(270, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kh87t")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tu22f")
+script = ExtResource("2_6x3do")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=423079151]
+layout_mode = 2
+theme_override_constants/margin_left = 11
+theme_override_constants/margin_top = 111
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 222
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=855076122]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_dy8ed")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1762556173]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2123712058]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "Resume"
+
+[node name="Retry" type="Button" parent="MarginContainer/VBoxContainer" unique_id=570908541]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "Restart"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2015813390]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "Main menu"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2021957280]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "Quit Game"
+
+[node name="HypeMode" type="Button" parent="MarginContainer/VBoxContainer" unique_id=822887799]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0.595703, 0.595703, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+toggle_mode = true
+text = "toggle hype mode"
+
+[node name="UltCharge" type="Button" parent="MarginContainer/VBoxContainer" unique_id=944870667]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0.595703, 0.595703, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Charge ultimate"
+
+[node name="ConfirmRetryDia" type="PanelContainer" parent="." unique_id=2063903870]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("3_tj61j")
+
+[node name="MarginContainer" type="MarginContainer" parent="ConfirmRetryDia" unique_id=1953453403]
+layout_mode = 2
+theme_override_constants/margin_left = 11
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmRetryDia/MarginContainer" unique_id=1541658705]
+layout_mode = 2
+theme_override_constants/separation = 11
+
+[node name="Label" type="Label" parent="ConfirmRetryDia/MarginContainer/VBoxContainer" unique_id=1629727351]
+layout_mode = 2
+text = "Are you sure you
+ want to restart?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmRetryDia/MarginContainer/VBoxContainer" unique_id=1520761450]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 11
+
+[node name="Cancel" type="Button" parent="ConfirmRetryDia/MarginContainer/VBoxContainer/HBoxContainer" unique_id=238569804]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Confirm" type="Button" parent="ConfirmRetryDia/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1215617319]
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_contine_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HypeMode" to="." method="_on_hype_mode_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/UltCharge" to="." method="_on_ult_charge_pressed"]
+[connection signal="pressed" from="ConfirmRetryDia/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="ConfirmRetryDia/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

@@ -1,0 +1,14 @@
+Polygon2D
+AnimationPlayer
+CollisionPolygon2D
+Node2D
+TextureRect
+Sprite2D
+ColorRect
+Label
+CanvasLayer
+Control
+CollisionShape2D
+Area2D
+HSlider
+MarginContainer

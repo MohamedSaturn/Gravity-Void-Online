@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://46j04eanmasb"]
+
+[ext_resource type="Texture2D" uid="uid://my3u36s3h2i6" path="res://Assets/Sprites/cube.png" id="1_5byt4"]
+[ext_resource type="Script" uid="uid://04h1cdtp4dcp" path="res://Components/PLayer/Items/Playerhp.gd" id="1_jckpb"]
+
+[sub_resource type="Animation" id="Animation_epefv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_plk6m"]
+resource_name = "start"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.23114, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.6245, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"des_obj"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uiuk6"]
+_data = {
+&"RESET": SubResource("Animation_epefv"),
+&"start": SubResource("Animation_plk6m")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uffv"]
+size = Vector2(40, 40)
+
+[sub_resource type="Gradient" id="Gradient_urq31"]
+offsets = PackedFloat32Array(0, 0.508333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.501961, 0.972549, 0.435294, 0.172549, 1, 1, 1, 0)
+
+[node name="PlayerHP" type="Area2D" unique_id=282773193 groups=["player_hp_node"]]
+z_index = -2
+collision_layer = 128
+collision_mask = 143
+script = ExtResource("1_jckpb")
+amount = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=508750878]
+libraries/ = SubResource("AnimationLibrary_uiuk6")
+speed_scale = 0.05
+
+[node name="Coll" type="CollisionShape2D" parent="." unique_id=168163815]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_2uffv")
+debug_color = Color(0.43, 0.0516, 0.0516, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="Coll" unique_id=475046226]
+amount = 3
+lifetime = 0.8
+speed_scale = 0.5
+randomness = 1.0
+fixed_fps = 30
+draw_order = 1
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, -222)
+initial_velocity_min = 91.67
+initial_velocity_max = 121.67
+linear_accel_min = 32.14
+linear_accel_max = 32.14
+angle_min = -197.1
+angle_max = 286.0
+scale_amount_min = 6.0
+scale_amount_max = 16.0
+color_ramp = SubResource("Gradient_urq31")
+
+[node name="Sprite" type="Node2D" parent="Coll" unique_id=1486215303]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Polygon2D" parent="Coll/Sprite" unique_id=2105246530]
+position = Vector2(-9.53674e-07, 9.53674e-07)
+scale = Vector2(0.25, 0.25)
+color = Color(0.6537225, 0.89192706, 0.54003394, 1)
+texture = ExtResource("1_5byt4")
+polygon = PackedVector2Array(71.1111, -3.8147e-06, 3.8147e-06, -71.1111, -71.1111, -3.8147e-06, 3.8147e-06, 71.1111)
+
+[node name="Sprite2D2" type="Polygon2D" parent="Coll/Sprite" unique_id=1307354288]
+position = Vector2(-9.53674e-07, 9.53674e-07)
+rotation = 0.785397
+scale = Vector2(0.25, 0.25)
+color = Color(0.49328628, 0.71484375, 0.38069156, 1)
+texture = ExtResource("1_5byt4")
+polygon = PackedVector2Array(71.1111, -3.8147e-06, 3.8147e-06, -71.1111, -71.1111, -3.8147e-06, 3.8147e-06, 71.1111)
+
+[node name="Sprite2D3" type="Polygon2D" parent="Coll/Sprite" unique_id=1233224347]
+position = Vector2(-4.1633363e-16, 4.7683716e-07)
+rotation = 0.00117658
+scale = Vector2(0.25, 0.25)
+color = Color(0.3766076, 0.55859375, 0.28875226, 1)
+texture = ExtResource("1_5byt4")
+polygon = PackedVector2Array(-0.03765056, -31.999983, -31.99998, 0.037648648, 0.03765055, 31.999979, 31.99998, -0.037652463)
+
+[connection signal="about_to_hide" from="." to="." method="_on_about_to_hide"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

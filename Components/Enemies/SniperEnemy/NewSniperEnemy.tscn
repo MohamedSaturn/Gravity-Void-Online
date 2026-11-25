@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://spy3w011amj1"]
+
+[ext_resource type="PackedScene" uid="uid://cayl03by5y4h0" path="res://Components/Enemies/RangeEnemy/RangeEnemy.tscn" id="1_25udb"]
+[ext_resource type="Script" uid="uid://bnjicrr626phy" path="res://Components/Enemies/SniperEnemy/sniper_enemy.gd" id="2_a78rw"]
+
+[node name="NewSniperEnemy" unique_id=1901460485 instance=ExtResource("1_25udb")]
+script = ExtResource("2_a78rw")
+move_back_range_ratio = 0.25
+fire_rate = 5.0
+ultimate_shoot_charge_rate = 35
+ranged_type = "sniper"
+bullet_speed = 960
+bullet_damage = 20
+bullet_range = 900
+bullet_scale = 0.45
+speed = 120
+max_health = 25
+die_parti_amount = 3
+main_color = Color(0.13659158, 0.3153631, 0.51171875, 1)
+new_path_cooldown = 1.0
+ultimate_color = Color(0.13725491, 0.3137255, 0.50980395, 1)
+
+[node name="UltimateParticles" parent="." index="1" unique_id=1450854342]
+modulate = Color(0.313726, 0.294118, 0.862745, 1)
+z_index = -1
+
+[node name="Polygon2D4" parent="Coll/Sprite/Normal" index="0"]
+position = Vector2(-8, 0)
+color = Color(0.13725491, 0.3137255, 0.50980395, 1)
+
+[node name="Polygon2D5" parent="Coll/Sprite/Normal" index="1"]
+color = Color(0.13725491, 0.3137255, 0.50980395, 1)
+polygon = PackedVector2Array(-24.2581, -29.8225, 42.6157, 0, -24.2581, 29.8225)
+
+[node name="Polygon2D2" parent="Coll/Sprite/Normal" index="2"]
+color = Color(0.07433574, 0.18530002, 0.30859375, 1)
+polygon = PackedVector2Array(-16.5269, -18.4615, -8.07692, -24.6154, 23.4731, 0, -8.07692, 24.6154, -16.5269, 18.4615)
+
+[node name="BarsContainer" parent="." index="4" unique_id=851440268]
+z_index = 0
+offset_right = 69.0
+offset_bottom = 4.045
+
+[node name="HPBar" parent="BarsContainer" index="0" unique_id=532325415]
+z_index = 3785
+
+[node name="UltimateBar" parent="BarsContainer" index="1" unique_id=439489553]
+custom_minimum_size = Vector2(80, 12)
+max_value = 5.0
+step = 0.01
+value = 2.37

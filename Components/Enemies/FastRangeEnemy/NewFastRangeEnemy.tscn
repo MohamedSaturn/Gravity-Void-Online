@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmpq0j1up17d0"]
+
+[ext_resource type="PackedScene" uid="uid://cayl03by5y4h0" path="res://Components/Enemies/RangeEnemy/RangeEnemy.tscn" id="1_y80d5"]
+[ext_resource type="Script" uid="uid://yoj0s1km8cwd" path="res://Components/Enemies/FastRangeEnemy/FastRangeEnemy.gd" id="2_yiqd2"]
+
+[node name="NewFastRangeEnemy" instance=ExtResource("1_y80d5")]
+script = ExtResource("2_yiqd2")
+move_back_speed_ratio = 0.0
+move_back_range_ratio = 0.0
+fire_rate = 0.4
+ultimate_shoot_charge_rate = 11
+ranged_type = "fast_range"
+bullet_speed = 650
+bullet_damage = 6
+bullet_range = 280
+bullet_scale = 0.8
+speed = 250
+max_health = 20
+die_parti_amount = 3
+main_color = Color(0.623529, 0.258824, 0.364706, 1)
+new_path_cooldown = 1.0
+ultimate_color = Color(0.552941, 0.133333, 0.270588, 1)
+ultimate_charger_points = 6
+
+[node name="AnimationPlayer" parent="." index="0"]
+unique_name_in_owner = false
+
+[node name="Sprite" parent="Coll" index="0"]
+scale = Vector2(0.7, 0.7)
+
+[node name="Polygon2D4" parent="Coll/Sprite/Normal" index="0"]
+color = Color(0.623529, 0.258824, 0.364706, 1)
+polygon = PackedVector2Array(-18.7689, -24.8521, 20, 0, -18.7689, 24.8521, -18.7689, 0.160732)
+
+[node name="Polygon2D5" parent="Coll/Sprite/Normal" index="1"]
+color = Color(0.623529, 0.258824, 0.364706, 1)
+polygon = PackedVector2Array(-23.6026, -34.7929, 9.83443, -16.568, 3.27817, 0, 9.83443, 16.568, -23.6026, 34.7929, -13.1125, 0)
+
+[node name="Polygon2D2" parent="Coll/Sprite/Normal" index="2"]
+color = Color(0.466667, 0.168627, 0.305882, 1)
+polygon = PackedVector2Array(-15.2564, -23.3333, -5.25641, -26.6667, 23.4731, 0, -5.25641, 26.6667, -15.2564, 23.3333)
+
+[node name="Polygon2D6" type="Polygon2D" parent="Coll/Sprite" index="1"]
+visible = false
+position = Vector2(-12.4621, 72.381)
+scale = Vector2(0.782184, 0.619048)
+color = Color(0.626953, 0.25919, 0.367355, 1)
+polygon = PackedVector2Array(-18.7689, -24.8521, 20, 0, -18.7689, 24.8521, -18.7689, 0.160732)
+
+[node name="Polygon2D7" type="Polygon2D" parent="Coll/Sprite" index="2"]
+visible = false
+position = Vector2(24.7173, 72.381)
+scale = Vector2(0.782184, 0.619048)
+color = Color(0.627451, 0.258824, 0.368627, 1)
+polygon = PackedVector2Array(-23.6026, -34.7929, 9.83443, -16.568, 3.27817, 0, 9.83443, 16.568, -23.6026, 34.7929, -13.1125, 0)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Coll/Sprite" index="3"]
+visible = false
+position = Vector2(-1.56468, 72.381)
+color = Color(0.47, 0.1692, 0.309573, 1)
+polygon = PackedVector2Array(-15.2564, -23.3333, -5.25641, -26.6667, 23.4731, 0, -5.25641, 26.6667, -15.2564, 23.3333)
+
+[node name="CollisionShape2D" parent="Coll/MoveRange" index="0"]
+position = Vector2(65.674, 1.09673e-05)
+
+[node name="BarsContainer" parent="." index="4"]
+z_index = 0
+offset_right = 69.0
+offset_bottom = 4.045
+
+[node name="HPBar" parent="BarsContainer" index="0"]
+z_index = 3785
+
+[node name="UltimateBar" parent="BarsContainer" index="1"]
+custom_minimum_size = Vector2(80, 12)
+max_value = 5.0
+step = 0.01
+value = 2.37

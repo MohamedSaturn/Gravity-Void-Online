@@ -1,0 +1,163 @@
+[gd_scene load_steps=9 format=3 uid="uid://buewuq2kw084j"]
+
+[ext_resource type="Script" uid="uid://ummo57hcmrl3" path="res://Components/Explosions/Explotion.gd" id="1_p4thf"]
+[ext_resource type="Texture2D" uid="uid://ckya1vfe7fttt" path="res://Assets/Sprites/cyrcle.png" id="2_0sm6a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hry14"]
+radius = 144.293
+
+[sub_resource type="Curve" id="Curve_rxxu4"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 283.924), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_eup52"]
+offsets = PackedFloat32Array(0, 0.521368, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.384615, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_ew7rs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coll/Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.25098)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExploPart:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w5egd"]
+resource_name = "explode"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.68302, 0.68302),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24),
+"transitions": PackedFloat32Array(0.732044, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.423529), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExploPart:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ok1rr"]
+_data = {
+&"RESET": SubResource("Animation_ew7rs"),
+&"explode": SubResource("Animation_w5egd")
+}
+
+[node name="Explosion" type="Area2D"]
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("1_p4thf")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_hry14")
+debug_color = Color(0.619608, 0.831373, 0.866667, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Coll"]
+modulate = Color(1, 1, 1, 0.25098)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_0sm6a")
+
+[node name="ExploPart" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 1.6
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.07
+initial_velocity_max = 133.07
+angle_min = 1.07288e-05
+angle_max = 286.0
+angle_curve = SubResource("Curve_rxxu4")
+scale_amount_min = 10.0
+scale_amount_max = 22.0
+color_ramp = SubResource("Gradient_eup52")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ok1rr")
+}
+speed_scale = 0.8
+
+[node name="DesTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="ExploPart" to="." method="_on_explo_part_finished"]
+[connection signal="timeout" from="DesTimer" to="." method="_on_des_timer_timeout"]

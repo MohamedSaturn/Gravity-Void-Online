@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://cayl03by5y4h0"]
+
+[ext_resource type="PackedScene" uid="uid://bqwk85upbxfm5" path="res://Components/Enemies/BaseEnemy.tscn" id="1_arth3"]
+[ext_resource type="Script" uid="uid://2xq80hi8r7kn" path="res://Components/Enemies/RangeEnemy/RangedEnemy.gd" id="2_uxolf"]
+[ext_resource type="PackedScene" uid="uid://u60fc2l3o3eh" path="res://Components/Enemies/EnemyBullet.tscn" id="3_jojqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxolf"]
+size = Vector2(156.085, 13.3973)
+
+[node name="RangeEnemy" node_paths=PackedStringArray("shoot_point") instance=ExtResource("1_arth3")]
+script = ExtResource("2_uxolf")
+move_back_speed_ratio = 0.5
+move_back_range_ratio = 0.5
+fire_rate = 1.0
+ultimate_shoot_charge_rate = 20
+shoot_point = NodePath("Coll/ShootPoint")
+ranged_type = "ranged"
+bullet_scene = ExtResource("3_jojqq")
+bullet_speed = 750
+bullet_damage = 10
+bullet_range = 550
+bullet_scale = 0.66
+speed = 135
+max_health = 40
+die_parti_amount = 4
+main_color = Color(0.654902, 0.192157, 0.411765, 1)
+ultimate_color = Color(0.580392, 0.0980392, 0.305882, 1)
+ultimate_charger_points = 5
+
+[node name="Sprite" parent="Coll" index="0"]
+z_index = -1
+
+[node name="Normal" type="Node2D" parent="Coll/Sprite" index="0"]
+
+[node name="Polygon2D4" type="Polygon2D" parent="Coll/Sprite/Normal" index="0"]
+position = Vector2(-11.6667, 0)
+scale = Vector2(1.01684, 0.804762)
+color = Color(0.760784, 0.294118, 0.431373, 1)
+polygon = PackedVector2Array(-18.7689, -24.8521, 20, 0, -18.7689, 24.8521)
+
+[node name="Polygon2D5" type="Polygon2D" parent="Coll/Sprite/Normal" index="1"]
+position = Vector2(36.6666, 0)
+scale = Vector2(1.01684, 0.804762)
+color = Color(0.760784, 0.294118, 0.431373, 1)
+polygon = PackedVector2Array(-23.6026, -34.7929, 15.735, 0, -23.6026, 34.7929)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Coll/Sprite/Normal" index="2"]
+position = Vector2(2.5, 0)
+scale = Vector2(1.3, 1.3)
+color = Color(0.654902, 0.192157, 0.411765, 1)
+polygon = PackedVector2Array(-16.5269, -18.4615, -7.29615, -27.6923, 23.4731, 0, -7.29615, 27.6923, -16.5269, 18.4615)
+
+[node name="MoveRange" type="Area2D" parent="Coll" index="1"]
+modulate = Color(1, 1, 1, 0.121569)
+scale = Vector2(1.64212, 1.64212)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coll/MoveRange" index="0"]
+position = Vector2(81.5073, 1.09673e-05)
+shape = SubResource("RectangleShape2D_uxolf")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="ShootPoint" type="Marker2D" parent="Coll" index="2"]
+unique_name_in_owner = true
+position = Vector2(25, 0)
+
+[connection signal="shooted" from="." to="." method="_on_shooted"]

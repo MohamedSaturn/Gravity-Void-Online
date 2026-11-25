@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://br38mdkrq7btq"]
+
+[ext_resource type="PackedScene" uid="uid://bqwk85upbxfm5" path="res://Components/Enemies/BaseEnemy.tscn" id="1_e735s"]
+[ext_resource type="Script" uid="uid://dwvjk1y7p0uns" path="res://Components/Enemies/SpearEnemy/SpearEnemy.gd" id="2_yh1hq"]
+
+[node name="SpearEnemy" instance=ExtResource("1_e735s")]
+script = ExtResource("2_yh1hq")
+spear_damage = 28
+spear_speed = 350
+spear_damage_after_throw = 20
+spear_speed_after_throw = 500
+attack_delay_time = 3.0
+attack_range = 150
+ultiamte_addi_max_health = 35
+ultimate_regneration = 3
+ultimate_hit_charge = 30
+max_health = 66
+main_color = Color(0.552941, 0.27451, 0.345098, 1)
+ultimate_color = Color(0.654902, 0.188235, 0.345098, 1)
+ultimate_charger_points = 5
+
+[node name="Polygon2D2" type="Polygon2D" parent="Coll/Sprite" index="0"]
+position = Vector2(7.36, 0)
+scale = Vector2(0.69, 0.69)
+color = Color(0.741176, 0.372549, 0.466667, 1)
+polygon = PackedVector2Array(26.6667, -53.3333, -37.3333, -32, -37.3333, 32, 26.6667, 53.3333, 21.3333, 26.6667, 53.3333, 32, 74.6667, 0, 53.3333, -32, 21.3333, -26.6667)
+
+[node name="Main" type="Polygon2D" parent="Coll/Sprite" index="1"]
+position = Vector2(-18.4, 0)
+scale = Vector2(0.759, 0.759)
+color = Color(0.554036, 0.2781, 0.347084, 1)
+polygon = PackedVector2Array(9.87655, -54.321, -14.8148, -39.5062, -14.8148, 39.5062, 14.8148, 54.321, 67.358, 0)
+
+[node name="BarsContainer" parent="." index="4"]
+offset_top = -90.0
+offset_bottom = -11.955
+
+[node name="HPBar" parent="BarsContainer" index="0"]
+custom_minimum_size = Vector2(140, 16)
+
+[node name="UltimateRegneration" type="Timer" parent="Timers" index="3"]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timers/UltimateRegneration" to="." method="_on_ultimate_regneration_timeout"]

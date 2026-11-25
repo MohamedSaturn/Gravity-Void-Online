@@ -1,0 +1,258 @@
+[gd_scene format=3 uid="uid://bqwk85upbxfm5"]
+
+[ext_resource type="Script" uid="uid://bsda1xa8j158o" path="res://Components/Enemies/BaseEnemy.gd" id="1_xvf2h"]
+[ext_resource type="Texture2D" uid="uid://ci4og3ddlk7uk" path="res://Assets/Sprites/triangle.png" id="2_qwf5x"]
+[ext_resource type="PackedScene" uid="uid://v8jdouon6xak" path="res://Components/Enemies/BaseEnemy/PathFinding.tscn" id="3_sgodt"]
+[ext_resource type="PackedScene" uid="uid://bg6odvmfm7jgq" path="res://Components/Enemies/BaseEnemy/NewPathTimer.tscn" id="4_wgd7n"]
+[ext_resource type="PackedScene" uid="uid://ua6wq0qpviu6" path="res://Components/UI/MyWorldUI/HPBar.tscn" id="5_dm783"]
+
+[sub_resource type="Animation" id="Animation_2u1vc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coll/Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Coll:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Coll:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qwf5x"]
+resource_name = "slow"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.55859375, 0.98965454, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Coll:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_voj5j"]
+resource_name = "ultimate_activated"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.88737, 0.514744, 0.74156, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmtlx"]
+_data = {
+&"RESET": SubResource("Animation_2u1vc"),
+&"slow": SubResource("Animation_qwf5x"),
+&"ultimate_activated": SubResource("Animation_voj5j")
+}
+
+[sub_resource type="Curve" id="Curve_dt6xi"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_wp1s5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hha8"]
+radius = 23.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1ydv"]
+bg_color = Color(0.23, 0.1495, 0.1978, 0.54902)
+border_color = Color(0.37, 0.1591, 0.17316, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.109804)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwf5x"]
+bg_color = Color(0.830078, 0.360457, 0.57142, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="BaseEnemy" type="CharacterBody2D" unique_id=1697955492 node_paths=PackedStringArray("animation_player") groups=["enemies"]]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_xvf2h")
+animation_player = NodePath("AnimationPlayer")
+new_path_cooldown = 0.3
+ultimate_color = Color(0.845703, 0.389266, 0.667097, 1)
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=572305784]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_fmtlx")
+
+[node name="UltimateParticles" type="CPUParticles2D" parent="." unique_id=1450854342]
+unique_name_in_owner = true
+z_index = -2
+amount = 2
+texture = ExtResource("2_qwf5x")
+speed_scale = 2.5
+randomness = 1.0
+fixed_fps = 30
+draw_order = 1
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 160.0
+angular_velocity_min = 30.0
+angular_velocity_max = 120.0
+angle_curve = SubResource("Curve_dt6xi")
+scale_amount_min = 0.12
+scale_amount_max = 0.22
+color_ramp = SubResource("Gradient_wp1s5")
+metadata/_edit_lock_ = true
+
+[node name="Coll" type="CollisionShape2D" parent="." unique_id=902011122]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_3hha8")
+metadata/_edit_lock_ = true
+
+[node name="Sprite" type="Node2D" parent="Coll" unique_id=1871191322]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="PathFinding" parent="." unique_id=2088197788 instance=ExtResource("3_sgodt")]
+
+[node name="BarsContainer" type="VBoxContainer" parent="." unique_id=851440268]
+unique_name_in_owner = true
+z_index = 3
+offset_left = -69.0
+offset_top = -74.0
+offset_right = 71.0
+offset_bottom = -36.0
+metadata/_edit_lock_ = true
+
+[node name="HPBar" parent="BarsContainer" unique_id=532325415 instance=ExtResource("5_dm783")]
+unique_name_in_owner = true
+z_index = 0
+custom_minimum_size = Vector2(140, 22)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="UltimateBar" type="ProgressBar" parent="BarsContainer" unique_id=439489553]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_s1ydv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qwf5x")
+step = 1.0
+show_percentage = false
+metadata/_edit_lock_ = true
+
+[node name="Timers" type="Node" parent="." unique_id=2139744350]
+
+[node name="NewPathTimer" parent="Timers" unique_id=125021188 instance=ExtResource("4_wgd7n")]
+unique_name_in_owner = true
+wait_time = 1.5
+
+[node name="UnSlowTimer" type="Timer" parent="Timers" unique_id=657284531]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="UltimateCharger" type="Timer" parent="Timers" unique_id=1191279635]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timers/NewPathTimer" to="." method="_on_new_path_timer_timeout"]
+[connection signal="timeout" from="Timers/UnSlowTimer" to="." method="_on_un_slow_timer_timeout"]
+[connection signal="timeout" from="Timers/UltimateCharger" to="." method="_on_ultimate_charger_timeout"]

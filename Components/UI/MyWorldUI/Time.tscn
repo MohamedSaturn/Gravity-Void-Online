@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvgglf0ulkmiy"]
+
+[ext_resource type="Script" uid="uid://bdr7uu0kw1pnd" path="res://Components/UI/MyWorldUI/Time.gd" id="1_y1qbh"]
+
+[node name="Time" type="Label"]
+offset_right = 1.0
+offset_bottom = 19.0
+script = ExtResource("1_y1qbh")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

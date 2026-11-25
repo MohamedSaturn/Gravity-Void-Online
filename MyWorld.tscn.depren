@@ -1,0 +1,111 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs7518nn5s1ek"]
+
+[ext_resource type="Script" path="res://Scripts/MyWorld.gd" id="1_euin1"]
+[ext_resource type="Texture2D" uid="uid://xfasa58hnhcx" path="res://icon.svg" id="2_vdpoe"]
+[ext_resource type="PackedScene" uid="uid://d02r231secnym" path="res://Scenes/Player.tscn" id="3_7v6em"]
+[ext_resource type="PackedScene" uid="uid://brx3m34u2tsb6" path="res://Enemyes/BaseEnemy.tscn" id="4_yv876"]
+
+[node name="TestWorld" type="Node2D"]
+script = ExtResource("1_euin1")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(220, 183)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Node2D"]
+position = Vector2(401, 546)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Node2D"]
+position = Vector2(945, 365)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+position = Vector2(734, -48)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+position = Vector2(-304, 435)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+position = Vector2(-591, -124)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+position = Vector2(-102, -262)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
+position = Vector2(491, -492)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
+position = Vector2(-204, -673)
+texture = ExtResource("2_vdpoe")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Node2D"]
+position = Vector2(-759, -548)
+texture = ExtResource("2_vdpoe")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ui" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="hp" type="PanelContainer" parent="GUI/ui/MarginContainer"]
+modulate = Color(1, 1, 1, 0.690196)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/ui/MarginContainer/hp"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/ui/MarginContainer/hp/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="CurrentHealth" type="Label" parent="GUI/ui/MarginContainer/hp/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "100"
+
+[node name="MaxHealth" type="Label" parent="GUI/ui/MarginContainer/hp/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.78125, 0.78125, 0.78125, 1)
+theme_override_font_sizes/font_size = 17
+text = "100"
+
+[node name="Player" parent="." instance=ExtResource("3_7v6em")]
+
+[node name="TestEnemy" parent="." instance=ExtResource("4_yv876")]
+position = Vector2(226, -43)
+script = null

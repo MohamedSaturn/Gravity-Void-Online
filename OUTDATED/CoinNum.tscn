@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl5h6fg4qkm1q"]
+
+[ext_resource type="Script" uid="uid://bpc5bo3odw7rt" path="res://OUTDATED/CoinNum.gd" id="1_yliv5"]
+
+[node name="CoinNum" type="HBoxContainer"]
+offset_right = 99.0
+offset_bottom = 24.0
+script = ExtResource("1_yliv5")
+
+[node name="Coin" type="Label" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 0.421875, 1)
+layout_mode = 2
+text = "44"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "الذهب :"

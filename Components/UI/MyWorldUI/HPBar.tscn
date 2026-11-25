@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://ua6wq0qpviu6"]
+
+[ext_resource type="Script" uid="uid://bxe2ten23lcxl" path="res://Components/UI/MyWorldUI/HPbar.gd" id="1_2w7rm"]
+[ext_resource type="StyleBox" uid="uid://k3s0i514mhuh" path="res://Assets/Res/BackgroundBarEnemy.tres" id="1_uw7cd"]
+[ext_resource type="StyleBox" uid="uid://bwc1lk5d6ru0u" path="res://Assets/Res/FillbarEnemy.tres" id="2_nk7wc"]
+[ext_resource type="FontFile" uid="uid://4apj24q7pi8d" path="res://Assets/Fonts/1LilitaOne-Regular.ttf" id="2_uw7cd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pw5io"]
+font = ExtResource("2_uw7cd")
+font_size = 26
+outline_size = 20
+outline_color = Color(0.51, 0.1428, 0.1734, 1)
+shadow_color = Color(0, 0, 0, 0.105882)
+
+[node name="HPBar" type="ProgressBar"]
+z_index = 1700
+custom_minimum_size = Vector2(120, 16)
+offset_right = 1.0
+offset_bottom = 16.0
+theme_override_styles/background = ExtResource("1_uw7cd")
+theme_override_styles/fill = ExtResource("2_nk7wc")
+step = 1.0
+value = 50.0
+show_percentage = false
+script = ExtResource("1_2w7rm")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+z_index = 2
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -40.0
+offset_right = 21.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100"
+label_settings = SubResource("LabelSettings_pw5io")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://caxh1vyo7mbh8"]
+
+[ext_resource type="Script" uid="uid://cmxsno7nwqncq" path="res://Components/Multiplayer/FFAWorld.gd" id="1_world"]
+
+[node name="FFAWorld" type="Node2D" unique_id=442654063]
+script = ExtResource("1_world")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=539911776]
+polygon = PackedVector2Array(206, 386, 484, 412, 727, 150, 286, 76, 240, 86)

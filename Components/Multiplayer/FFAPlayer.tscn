@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Components/Multiplayer/FFAPlayer.gd" id="1_player"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ffa"]
+radius = 24.0
+
+[node name="FFAPlayer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ffa")
+
+[node name="Visual" type="Node2D" parent="."]
+scale = Vector2(1.1, 1.1)
+
+[node name="Back" type="Polygon2D" parent="Visual"]
+z_index = 1
+position = Vector2(-9.63, 0)
+scale = Vector2(0.78, 0.62)
+polygon = PackedVector2Array(-19.03, -26.92, 4.41, -8.08, 4.41, 8.08, -19.03, 26.92)
+
+[node name="Core" type="Polygon2D" parent="Visual"]
+z_index = 2
+polygon = PackedVector2Array(-16, -19, -6.18, -23.33, 22.03, 0, -6.18, 23.33, -16, 19)
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -100.0
+offset_top = -92.0
+offset_right = 100.0
+offset_bottom = -52.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sync" type="MultiplayerSynchronizer" parent="."]

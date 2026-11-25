@@ -1,0 +1,156 @@
+[gd_scene load_steps=10 format=3 uid="uid://chskwqkhg71td"]
+
+[ext_resource type="Script" uid="uid://cdtjfesb8mjfv" path="res://Components/Enemies/ExplodedEnemy/ExplodedEnemy.gd" id="2_0fty8"]
+[ext_resource type="PackedScene" uid="uid://ua6wq0qpviu6" path="res://Components/UI/MyWorldUI/HPBar.tscn" id="4_56op3"]
+[ext_resource type="PackedScene" uid="uid://v8jdouon6xak" path="res://Components/Enemies/BaseEnemy/PathFinding.tscn" id="5_0bvxu"]
+[ext_resource type="PackedScene" uid="uid://bg6odvmfm7jgq" path="res://Components/Enemies/BaseEnemy/NewPathTimer.tscn" id="6_jlvtc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qjr4"]
+radius = 28.5714
+
+[sub_resource type="Animation" id="Animation_2u1vc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_voj5j"]
+resource_name = "ability_activated"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.33, 1.33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.52549, 0.0745098, 0.65098, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b8xel"]
+resource_name = "get_slowness"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.482353, 0.709804, 0.894118, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmtlx"]
+_data = {
+&"RESET": SubResource("Animation_2u1vc"),
+&"ability_activated": SubResource("Animation_voj5j"),
+&"get_slowness": SubResource("Animation_b8xel")
+}
+
+[node name="FastEnemy" type="CharacterBody2D" groups=["enemies"]]
+z_index = 111
+collision_layer = 8
+collision_mask = 8
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("2_0fty8")
+explosion_damage = 15
+explosion_scale = 0.4
+explosion_time = 4.0
+speed = 320
+max_health = 15
+main_color = Color(0.319119, 0.222494, 0.51237, 1)
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CircleShape2D_0qjr4")
+
+[node name="Sprite" type="Node2D" parent="Coll"]
+unique_name_in_owner = true
+position = Vector2(-5.655, 0)
+scale = Vector2(0.4, 0.4)
+
+[node name="Back" type="Polygon2D" parent="Coll/Sprite"]
+unique_name_in_owner = true
+position = Vector2(189.653, -2.93122e-08)
+rotation = -3.13909
+color = Color(0.286275, 0.203922, 0.45098, 1)
+polygon = PackedVector2Array(174.682, 31.309, 174.523, -32.1829, 110.952, -63.7699, 63.4919, -0.158895, 111.27, 63.2138)
+
+[node name="Base" type="Polygon2D" parent="Coll/Sprite"]
+unique_name_in_owner = true
+rotation = -0.785398
+color = Color(0.419608, 0.262745, 0.521569, 1)
+polygon = PackedVector2Array(-1.90735e-05, -94.2809, -94.2809, 1.90735e-05, -78.5674, 47.1405, 56.5686, 56.5685, 47.1404, -78.5674)
+
+[node name="PathFinding" parent="." instance=ExtResource("5_0bvxu")]
+
+[node name="NewPathTimer" parent="." instance=ExtResource("6_jlvtc")]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fmtlx")
+}
+
+[node name="HPBar" parent="." instance=ExtResource("4_56op3")]
+offset_left = -26.0
+offset_top = -63.0
+offset_right = 25.0
+offset_bottom = -45.0
+step = 0.0
+
+[connection signal="timeout" from="NewPathTimer" to="." method="_on_new_path_timer_timeout"]

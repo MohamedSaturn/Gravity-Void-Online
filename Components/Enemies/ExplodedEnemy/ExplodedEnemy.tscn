@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://dpo73vtxrutpr"]
+
+[ext_resource type="PackedScene" uid="uid://bqwk85upbxfm5" path="res://Components/Enemies/BaseEnemy.tscn" id="1_usyot"]
+[ext_resource type="Script" uid="uid://cdtjfesb8mjfv" path="res://Components/Enemies/ExplodedEnemy/ExplodedEnemy.gd" id="2_01aty"]
+[ext_resource type="Texture2D" uid="uid://ci4og3ddlk7uk" path="res://Assets/Sprites/triangle.png" id="2_5hp1m"]
+
+[sub_resource type="Curve" id="Curve_tbur4"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_5ve2b"]
+offsets = PackedFloat32Array(0.396825, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_af3cg"]
+radius = 48.1664
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66pl0"]
+bg_color = Color(0.22, 0.0617467, 0.0374, 0.490196)
+border_color = Color(0.37, 0.1591, 0.17316, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.109804)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r45i1"]
+bg_color = Color(0.798828, 0.437121, 0.376011, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ExplodedEnemy" unique_id=593807307 instance=ExtResource("1_usyot")]
+script = ExtResource("2_01aty")
+explosion_damage = 22
+explosion_scale = 0.8
+explosion_time = 8.0
+speed = 320
+max_health = 16
+die_parti_amount = 0
+bars_cont_hight = 110
+main_color = Color(0.286275, 0.203922, 0.447059, 1)
+
+[node name="Particles" type="CPUParticles2D" parent="." index="1" unique_id=138107225]
+unique_name_in_owner = true
+modulate = Color(0.295443, 0.193818, 0.507161, 1)
+amount = 1
+texture = ExtResource("2_5hp1m")
+lifetime = 0.8
+speed_scale = 1.7
+fixed_fps = 30
+draw_order = 1
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 140.0
+angular_velocity_min = 30.0
+angular_velocity_max = 120.0
+angle_curve = SubResource("Curve_tbur4")
+scale_amount_min = 0.07
+scale_amount_max = 0.16
+color_ramp = SubResource("Gradient_5ve2b")
+hue_variation_max = 0.06
+
+[node name="ExplosionArea" type="Area2D" parent="." index="2" unique_id=360334044]
+collision_layer = 3
+collision_mask = 143
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="ExplosionArea" index="0" unique_id=545277552]
+shape = SubResource("CircleShape2D_af3cg")
+
+[node name="Sprite" parent="Coll" parent_id_path=PackedInt32Array(902011122) index="0" unique_id=1871191322]
+scale = Vector2(0.7, 0.7)
+
+[node name="Back" type="Polygon2D" parent="Coll/Sprite" index="0" unique_id=99131949]
+unique_name_in_owner = true
+position = Vector2(70.2062, -1.17249e-08)
+rotation = -3.13909
+scale = Vector2(0.4, 0.4)
+color = Color(0.41960785, 0.2627451, 0.52156866, 1)
+polygon = PackedVector2Array(174.682, 31.309, 174.523, -32.1829, 110.952, -63.7699, 63.4919, -0.158895, 111.27, 63.2138)
+
+[node name="Base" type="Polygon2D" parent="Coll/Sprite" index="1" unique_id=2146212952]
+unique_name_in_owner = true
+position = Vector2(-5.655, 0)
+rotation = -0.785398
+scale = Vector2(0.4, 0.4)
+color = Color(0.28627452, 0.20392157, 0.4509804, 1)
+polygon = PackedVector2Array(-1.90735e-05, -94.2809, -94.2809, 1.90735e-05, -78.5674, 47.1405, 56.5686, 56.5685, 47.1404, -78.5674)
+
+[node name="HPBar" parent="BarsContainer" parent_id_path=PackedInt32Array(851440268) index="0" unique_id=532325415]
+modulate = Color(1, 1, 1, 0)
+
+[node name="UltimateBar" parent="BarsContainer" parent_id_path=PackedInt32Array(851440268) index="1" unique_id=439489553]
+visible = false
+
+[node name="ExplosionTimeBar" type="ProgressBar" parent="BarsContainer" parent_id_path=PackedInt32Array(851440268) index="2" unique_id=517222211]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_66pl0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r45i1")
+max_value = 5.0
+value = 2.37
+show_percentage = false
+
+[node name="NewPathTimer" parent="Timers" parent_id_path=PackedInt32Array(2139744350) index="0" unique_id=125021188]
+wait_time = 1.0
+
+[node name="ExplosionTimer" type="Timer" parent="Timers" parent_id_path=PackedInt32Array(2139744350) index="3" unique_id=2002468405]
+unique_name_in_owner = true
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
+[connection signal="timeout" from="Timers/ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

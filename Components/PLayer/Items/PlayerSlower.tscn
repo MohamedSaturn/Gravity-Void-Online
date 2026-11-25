@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck2nquoexdwg1"]
+
+[ext_resource type="Script" uid="uid://dv875xf71a43" path="res://Components/PLayer/Items/PlayerSlower.gd" id="1_njbnv"]
+[ext_resource type="Texture2D" uid="uid://ckya1vfe7fttt" path="res://Assets/Sprites/cyrcle.png" id="2_iwcx5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2by0"]
+radius = 91.444
+
+[node name="PlayerSlower" type="Area2D"]
+script = ExtResource("1_njbnv")
+slow_color = Color(0.482353, 0.709804, 0.894118, 1)
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g2by0")
+debug_color = Color(0.645833, 0.645833, 0.645833, 0.0235294)
+
+[node name="Sprite2D" type="Sprite2D" parent="Coll"]
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(1.45312, 1.45313)
+texture = ExtResource("2_iwcx5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

@@ -1,0 +1,712 @@
+[gd_scene format=3 uid="uid://jeaxtdt0cqfh"]
+
+[ext_resource type="Script" uid="uid://tgnn6uswgerm" path="res://Components/UI/MainMenu/MainMenu.gd" id="1_jyllw"]
+[ext_resource type="Theme" uid="uid://cmna0g20fqtvi" path="res://Assets/Res/GameTheme.tres" id="1_v0pv2"]
+[ext_resource type="PackedScene" uid="uid://cs7518nn5s1ek" path="res://Components/Modes/MyWorld.tscn" id="3_86vpy"]
+[ext_resource type="PackedScene" uid="uid://bieb7w0h6rrnq" path="res://Components/UI/MainMenu/ControleDialog/PowerControle.tscn" id="4_six0g"]
+[ext_resource type="FontFile" uid="uid://4apj24q7pi8d" path="res://Assets/Fonts/1LilitaOne-Regular.ttf" id="6_afj7q"]
+[ext_resource type="Texture2D" uid="uid://ci4og3ddlk7uk" path="res://Assets/Sprites/triangle.png" id="10_afj7q"]
+
+[sub_resource type="Environment" id="Environment_afj7q"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_levels/1 = 1.6
+glow_levels/3 = 15.31
+glow_normalized = true
+glow_intensity = 1.68
+glow_strength = 0.46
+glow_bloom = 0.86
+glow_hdr_threshold = 1.08
+glow_hdr_scale = 1.54
+glow_hdr_luminance_cap = 57.73
+glow_map_strength = 0.51
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 2.47
+fog_density = 1.0
+
+[sub_resource type="Gradient" id="Gradient_es860"]
+offsets = PackedFloat32Array(0.1889313, 0.7041985)
+colors = PackedColorArray(0.77, 0.77, 0.77, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_boum7"]
+gradient = SubResource("Gradient_es860")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_uboij"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_crl6h"]
+colors = PackedColorArray(0.282353, 0.25098, 0.521569, 1, 0.281147, 0.2496, 0.52, 0)
+
+[sub_resource type="Animation" id="Animation_afj7q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.45]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.37135306, 0.33395895, 0.6731771, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fragment:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.101960786, 0.12156863, 0.2509804, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Intro/Log-in:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Intro/Log-in/LOGO:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Intro/Log-in/LOGO:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PointLight2D:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15, 15)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Fragment:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_es860"]
+resource_name = "fragment"
+length = 4.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1.5691684, 1),
+"update": 0,
+"values": [2.0, 2.5, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9333334, 2.2333333, 3.1666667, 4),
+"transitions": PackedFloat32Array(1, 1.8025014, 1.0352674, 3.4822016, 1),
+"update": 0,
+"values": [Color(0.37135306, 0.33395895, 0.6731771, 1), Color(0.15737884, 0.12997946, 0.37109375, 1), Color(0.29515737, 0.235143, 0.7252604, 1), Color(0.13100886, 0.11024474, 0.29296875, 1), Color(0.37254903, 0.33333334, 0.6745098, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fragment:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.95, 2.05, 3.05, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -11), Vector2(0, 11), Vector2(0, -11), Vector2(0, 11), Vector2(0, -11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.8666667, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.101960786, 0.12156863, 0.2509804, 1), Color(0.16177198, 0.19115342, 0.39192706, 1), Color(0.101960786, 0.12156863, 0.2509804, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9, 2.1, 3.15, 4),
+"transitions": PackedFloat32Array(2.1435478, 0.57434934, 3.0314333, 1, 1),
+"update": 0,
+"values": [Vector2(15, 15), Vector2(11, 11), Vector2(25, 25), Vector2(9, 9), Vector2(15, 15)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Fragment:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(2.5491211, 0.4829681, 1),
+"update": 0,
+"values": [Vector2(7, 7), Vector2(8.5, 8.5), Vector2(7, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_boum7"]
+resource_name = "login"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Intro/Log-in:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(5.0982394, 1),
+"update": 0,
+"values": [Color(0.050816845, 0.06413778, 0.12630206, 1), Color(0, 0.011764706, 0.07450981, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Intro/Log-in/LOGO:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.19999999, 0.6333333),
+"transitions": PackedFloat32Array(1.2311449, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.22, 1.22)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Intro/Log-in/LOGO:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.19999999, 0.3333333, 0.5333333),
+"transitions": PackedFloat32Array(1, 2.7320802, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_boum7"]
+_data = {
+&"RESET": SubResource("Animation_afj7q"),
+&"fragment": SubResource("Animation_es860"),
+&"login": SubResource("Animation_boum7")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_xim88"]
+font = ExtResource("6_afj7q")
+font_size = 100
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="Animation" id="Animation_86vpy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GRAVITYVOID:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jcjwy"]
+resource_name = "game_name"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GRAVITYVOID:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.02, 1.02), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86vpy"]
+_data = {
+&"RESET": SubResource("Animation_86vpy"),
+&"game_name": SubResource("Animation_jcjwy")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_df05h"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8um5k"]
+font_size = 22
+font_color = Color(0.53427637, 0.5756921, 0.81901044, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.0627451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jcjwy"]
+font = ExtResource("6_afj7q")
+font_size = 100
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="Animation" id="Animation_xim88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 720)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8um5k"]
+resource_name = "show_dialog"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 720), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_koqhg"]
+_data = {
+&"RESET": SubResource("Animation_xim88"),
+&"show_dialog": SubResource("Animation_8um5k")
+}
+
+[node name="MainMenu" type="Control" unique_id=306799174]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+theme = ExtResource("1_v0pv2")
+script = ExtResource("1_jyllw")
+gamemode = ExtResource("3_86vpy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2101942839]
+environment = SubResource("Environment_afj7q")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1411957164]
+position = Vector2(800, 360)
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D" unique_id=1097145155]
+z_index = -6
+scale = Vector2(15, 15)
+color = Color(0.37135306, 0.33395895, 0.6731771, 1)
+energy = 2.45
+texture = SubResource("GradientTexture2D_boum7")
+
+[node name="Fragment" type="Node2D" parent="Node2D" unique_id=1528988556]
+z_index = 1
+rotation = -0.15707964
+scale = Vector2(7, 7)
+metadata/_edit_lock_ = true
+
+[node name="AbilityPart" type="CPUParticles2D" parent="Node2D/Fragment" unique_id=359483318]
+unique_name_in_owner = true
+scale = Vector2(0.416667, 0.416667)
+amount = 11
+texture = ExtResource("10_afj7q")
+lifetime = 5.0
+speed_scale = 0.4
+fixed_fps = 30
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -222)
+initial_velocity_min = 90.0
+initial_velocity_max = 160.0
+angular_velocity_min = -479.73
+angular_velocity_max = 120.0
+angle_curve = SubResource("Curve_uboij")
+scale_amount_min = 0.2
+scale_amount_max = 0.45
+color_ramp = SubResource("Gradient_crl6h")
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D/Fragment" unique_id=15042722]
+color = Color(0.35042945, 0.28653464, 0.77213544, 1)
+polygon = PackedVector2Array(0, -12, -8, 0, 0, 12, 8, 0)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Node2D/Fragment" unique_id=720363130]
+color = Color(0.5820447, 0.53517157, 0.94921875, 1)
+polygon = PackedVector2Array(0, -5.14286, -6.28572, 0, 0, 5.14286, 6.28572, 0)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Node2D/Fragment" unique_id=282272091]
+position = Vector2(0, 0.304762)
+color = Color(0.23258926, 0.1898346, 0.55859375, 1)
+polygon = PackedVector2Array(0, -3.16191, -2.85714, -0.304762, 0, 2.55238, 2.85714, -0.304762)
+
+[node name="IntroPlayer" type="AnimationPlayer" parent="Node2D" unique_id=1228954056]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_boum7")
+autoplay = &"fragment"
+speed_scale = 0.2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1003251803]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.12156863, 0.2509804, 1)
+
+[node name="CenterContainer" type="MarginContainer" parent="." unique_id=916460872]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 50
+
+[node name="Play" type="Button" parent="CenterContainer" unique_id=169045185]
+visible = false
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 44
+text = "START"
+flat = true
+
+[node name="CenterContainer2" type="MarginContainer" parent="." unique_id=1116880328]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="CenterContainer2" unique_id=592980723]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="GRAVITYVOID" type="Label" parent="CenterContainer2/Control" unique_id=541322260]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = -57.5
+offset_right = 331.0
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "GRAVITY VOID"
+label_settings = SubResource("LabelSettings_xim88")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer2/Control" unique_id=1646353063]
+libraries/ = SubResource("AnimationLibrary_86vpy")
+speed_scale = 4.0
+
+[node name="H" type="VBoxContainer" parent="CenterContainer2" unique_id=517241916]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = -12
+
+[node name="Play" type="Button" parent="CenterContainer2/H" unique_id=1902600167]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 47
+text = "START"
+flat = true
+
+[node name="Settings" type="Button" parent="CenterContainer2/H" unique_id=682782139]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 47
+text = "JOYSTICK"
+flat = true
+
+[node name="Quit" type="Button" parent="CenterContainer2/H" unique_id=85121568]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 47
+text = "QUIT"
+flat = true
+
+[node name="INFO" type="HBoxContainer" parent="CenterContainer2/H" unique_id=92985811]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 5
+
+[node name="Version" type="Label" parent="CenterContainer2/H/INFO" unique_id=1490952485]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_df05h")
+text = "0.0.123"
+label_settings = SubResource("LabelSettings_8um5k")
+
+[node name="Credit" type="Label" parent="CenterContainer2/H/INFO" unique_id=242571300]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_df05h")
+text = "By MohamedSaturn"
+label_settings = SubResource("LabelSettings_8um5k")
+
+[node name="Intro" type="CanvasLayer" parent="." unique_id=2119816472]
+
+[node name="LoginPlayer" type="AnimationPlayer" parent="Intro" unique_id=1888668381]
+unique_name_in_owner = true
+root_node = NodePath("../../Node2D")
+libraries/ = SubResource("AnimationLibrary_boum7")
+speed_scale = 0.23
+
+[node name="Log-in" type="ColorRect" parent="Intro" unique_id=810635330]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="LOGO" type="Label" parent="Intro/Log-in" unique_id=1794089601]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+z_index = 6
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.5
+offset_top = -105.5
+offset_right = 181.5
+offset_bottom = 105.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(264, 151.5)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "XD
+Engine"
+label_settings = SubResource("LabelSettings_jcjwy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialog" type="CanvasLayer" parent="." unique_id=745721620]
+
+[node name="PowerDialog" parent="Dialog" unique_id=1522583954 instance=ExtResource("4_six0g")]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+offset_top = 720.0
+offset_bottom = 720.0
+pivot_offset = Vector2(576, 324)
+
+[node name="DialogAnimator" type="AnimationPlayer" parent="Dialog/PowerDialog" unique_id=1938311669]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_koqhg")
+speed_scale = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=774747234]
+visible = false
+
+[connection signal="animation_finished" from="Node2D/IntroPlayer" to="." method="_on_intro_player_animation_finished"]
+[connection signal="pressed" from="CenterContainer2/H/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer2/H/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer2/H/Quit" to="." method="_on_quit_pressed"]
+[connection signal="animation_finished" from="Intro/LoginPlayer" to="." method="_on_intro_player_animation_finished"]
+[connection signal="ask_to_hide" from="Dialog/PowerDialog" to="." method="_on_power_dialog_ask_to_hide"]
+[connection signal="powers_selected" from="Dialog/PowerDialog" to="." method="_on_power_dialog_powers_selected"]
+[connection signal="animation_finished" from="Dialog/PowerDialog/DialogAnimator" to="." method="_on_dialog_animator_animation_finished"]

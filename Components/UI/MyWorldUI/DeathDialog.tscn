@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://cwmdqr2mvkj6n"]
+
+[ext_resource type="Theme" uid="uid://cmna0g20fqtvi" path="res://Assets/Res/GameTheme.tres" id="1_tjadw"]
+[ext_resource type="Script" uid="uid://x1h2f5on4y4j" path="res://Components/UI/MyWorldUI/DeathDialog.gd" id="2_s16an"]
+
+[sub_resource type="Animation" id="Animation_atntu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/Buttons:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tkdfj"]
+resource_name = "death_anim"
+length = 1.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1.1),
+"transitions": PackedFloat32Array(0.435275, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/Buttons:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.57, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_24hao"]
+_data = {
+&"RESET": SubResource("Animation_atntu"),
+&"death_anim": SubResource("Animation_tkdfj")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_j6y0h"]
+font_size = 77
+shadow_size = 33
+shadow_color = Color(0, 0, 0, 0.00392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbc2l"]
+font_size = 28
+shadow_size = 11
+shadow_color = Color(0, 0, 0, 0.0509804)
+
+[node name="DeathDialog" type="ColorRect" unique_id=1368529813]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tjadw")
+color = Color(0, 0, 0, 0.21960784)
+script = ExtResource("2_s16an")
+
+[node name="AnimationPlayerDeath" type="AnimationPlayer" parent="." unique_id=529159540]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_24hao")
+speed_scale = 1.6
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1078915536]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1469861083]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_j6y0h")
+
+[node name="Buttons" type="BoxContainer" parent="MarginContainer" unique_id=1055439596]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+vertical = true
+
+[node name="Kills" type="Label" parent="MarginContainer/Buttons" unique_id=327266779]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "THIS IS STRING"
+label_settings = SubResource("LabelSettings_vbc2l")
+
+[node name="retry" type="Button" parent="MarginContainer/Buttons" unique_id=131974753]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+flat = true
+
+[node name="menu" type="Button" parent="MarginContainer/Buttons" unique_id=588902875]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+flat = true
+
+[connection signal="pressed" from="MarginContainer/Buttons/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/menu" to="." method="_on_menu_pressed"]

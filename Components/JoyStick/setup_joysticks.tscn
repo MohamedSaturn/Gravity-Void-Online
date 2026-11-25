@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://oirrnpickqeq"]
+
+[ext_resource type="Theme" uid="uid://cmna0g20fqtvi" path="res://Assets/Res/GameTheme.tres" id="1_76ubb"]
+[ext_resource type="Script" uid="uid://bilswgu7c5al8" path="res://Components/JoyStick/setup_joysticks.gd" id="1_yorgi"]
+[ext_resource type="Texture2D" uid="uid://knl2o3tpeyxy" path="res://Assets/Sprites/cyrcle512.png" id="3_yorgi"]
+[ext_resource type="Script" uid="uid://cvvy0nmfxgyq1" path="res://Components/JoyStick/joystick_setting.gd" id="4_4508u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4508u"]
+radius = 266.0
+
+[node name="SetupJoysticks" type="Node2D" unique_id=1602716961]
+script = ExtResource("1_yorgi")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=566864161]
+z_index = 3
+custom_minimum_size = Vector2(0, 11.735)
+offset_left = -66.0
+offset_top = -45.0
+offset_right = 1633.0
+offset_bottom = 826.0
+mouse_filter = 2
+color = Color(0.017742587, 0.028304607, 0.08463544, 0.58431375)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=981262697]
+layer = 2
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=449251247]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_76ubb")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1337421991]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1269602803]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Save" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1039828268]
+layout_mode = 2
+text = "Save and exit"
+flat = true
+
+[node name="Cancel" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=51904912]
+visible = false
+layout_mode = 2
+text = "Cancel"
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1419473047]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2" unique_id=801394346]
+layout_mode = 2
+text = "Controles Opacity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OpacitySlider" type="HSlider" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2" unique_id=342867099]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="nodes" type="Node2D" parent="." unique_id=570404297]
+z_index = 4
+
+[node name="MovementJoy" type="Area2D" parent="nodes" unique_id=1879992103]
+unique_name_in_owner = true
+position = Vector2(180, 530)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("4_4508u")
+joystick_type = "move"
+
+[node name="Sprite2D" type="Sprite2D" parent="nodes/MovementJoy" unique_id=1132866019]
+modulate = Color(0.4392157, 0.6, 0.69411767, 1)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_yorgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nodes/MovementJoy" unique_id=1631278236]
+shape = SubResource("CircleShape2D_4508u")
+
+[node name="ShootingJoy" type="Area2D" parent="nodes" unique_id=1422791453]
+unique_name_in_owner = true
+position = Vector2(1415, 530)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("4_4508u")
+joystick_type = "aim"
+
+[node name="Sprite2D" type="Sprite2D" parent="nodes/ShootingJoy" unique_id=1671526403]
+modulate = Color(0.64705884, 0.39215687, 0.38039216, 1)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_yorgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nodes/ShootingJoy" unique_id=919610968]
+shape = SubResource("CircleShape2D_4508u")
+
+[node name="UltimateJoy" type="Area2D" parent="nodes" unique_id=1028584590]
+unique_name_in_owner = true
+position = Vector2(1141.91, 374.355)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("4_4508u")
+joystick_type = "ult"
+
+[node name="sprite" type="Sprite2D" parent="nodes/UltimateJoy" unique_id=817347486]
+modulate = Color(0.21015126, 0.17123923, 0.51171875, 1)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_yorgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nodes/UltimateJoy" unique_id=53610587]
+shape = SubResource("CircleShape2D_4508u")
+
+[node name="DashButton" type="Area2D" parent="nodes" unique_id=1331738150]
+unique_name_in_owner = true
+position = Vector2(1384.0001, 310)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("4_4508u")
+joystick_type = "dash"
+
+[node name="Sprite" type="Sprite2D" parent="nodes/DashButton" unique_id=1779055710]
+modulate = Color(0.65882355, 0.27058825, 0.21176471, 1)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_yorgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nodes/DashButton" unique_id=980170339]
+shape = SubResource("CircleShape2D_4508u")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="drag_ended" from="CanvasLayer/Control/MarginContainer/VBoxContainer2/OpacitySlider" to="." method="_on_h_slider_drag_ended"]
+[connection signal="drag_finished" from="nodes/MovementJoy" to="nodes/MovementJoy" method="on_drag_finished"]
+[connection signal="drag_finished" from="nodes/ShootingJoy" to="nodes/ShootingJoy" method="on_drag_finished"]
+[connection signal="drag_finished" from="nodes/UltimateJoy" to="nodes/UltimateJoy" method="on_drag_finished"]
+[connection signal="drag_finished" from="nodes/DashButton" to="nodes/DashButton" method="on_drag_finished"]

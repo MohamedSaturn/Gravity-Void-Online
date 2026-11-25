@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ccnh7o21jjpvy"]
+
+[ext_resource type="Shader" uid="uid://ok3d64mexrhu" path="res://Assets/Res/mainmenu .gdshader" id="1_gk7pf"]
+
+[resource]
+shader = ExtResource("1_gk7pf")
+shader_parameter/speed = 0.1

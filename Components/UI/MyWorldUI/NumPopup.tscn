@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://da4wa3de367t4"]
+
+[ext_resource type="Script" uid="uid://b4jgmpaqa8s3v" path="res://Components/UI/MyWorldUI/NumPopup.gd" id="1_emv5e"]
+
+[node name="DamageNumber" type="Node2D" unique_id=2019513183]
+z_index = 140
+script = ExtResource("1_emv5e")
+position_range = 30
+tween_duration = 0.7
+y_direction = -80
+
+[node name="Label" type="Label" parent="." unique_id=467039789]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(25, 25)
+theme_override_colors/font_color = Color(0.947917, 0.947917, 0.947917, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.419608)
+theme_override_colors/font_outline_color = Color(0.06, 0.06, 0.06, 0.929412)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 27
+theme_override_font_sizes/font_size = 57
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,190 @@
+[gd_scene load_steps=12 format=3 uid="uid://c34lw28arvyaq"]
+
+[ext_resource type="Script" uid="uid://2xq80hi8r7kn" path="res://Components/Enemies/RangeEnemy/RangedEnemy.gd" id="1_ikqmw"]
+[ext_resource type="PackedScene" uid="uid://u60fc2l3o3eh" path="res://Components/Enemies/EnemyBullet.tscn" id="2_uo7fj"]
+[ext_resource type="PackedScene" uid="uid://v8jdouon6xak" path="res://Components/Enemies/BaseEnemy/PathFinding.tscn" id="3_q1rh4"]
+[ext_resource type="PackedScene" uid="uid://bg6odvmfm7jgq" path="res://Components/Enemies/BaseEnemy/NewPathTimer.tscn" id="4_vqc08"]
+[ext_resource type="PackedScene" uid="uid://ua6wq0qpviu6" path="res://Components/UI/MyWorldUI/HPBar.tscn" id="5_jdwkj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xde2i"]
+radius = 23.3333
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmewc"]
+size = Vector2(187.752, 24.3588)
+
+[sub_resource type="Animation" id="Animation_2u1vc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_voj5j"]
+resource_name = "ability_activated"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.33, 1.33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.52549, 0.0745098, 0.65098, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b8xel"]
+resource_name = "get_slowness"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.482353, 0.709804, 0.894118, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmtlx"]
+_data = {
+&"RESET": SubResource("Animation_2u1vc"),
+&"ability_activated": SubResource("Animation_voj5j"),
+&"get_slowness": SubResource("Animation_b8xel")
+}
+
+[node name="RangedEnemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_ikqmw")
+fire_rate = 1.0
+bullet_speed = 750
+bullet_damage = 10
+bullet_range = 500
+bullet_scale = 0.66
+move_back_speed_ratio = 0.5
+move_back_range_ratio = 0.5
+bullet_scene = ExtResource("2_uo7fj")
+ranged_type = "defult"
+speed = 135
+max_health = 55
+main_color = Color(0.654902, 0.192157, 0.411765, 1)
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_xde2i")
+
+[node name="MoveRange" type="Area2D" parent="Coll"]
+modulate = Color(1, 1, 1, 0.121569)
+scale = Vector2(1.64212, 1.64212)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coll/MoveRange"]
+position = Vector2(81.5073, 1.09673e-05)
+shape = SubResource("RectangleShape2D_vmewc")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="Sprite" type="Node2D" parent="Coll"]
+unique_name_in_owner = true
+scale = Vector2(1.3, 1.3)
+
+[node name="Polygon2D4" type="Polygon2D" parent="Coll/Sprite"]
+position = Vector2(-8.97436, 0)
+scale = Vector2(0.782184, 0.619048)
+color = Color(0.760784, 0.294118, 0.431373, 1)
+polygon = PackedVector2Array(-18.7689, -24.8521, 20, 0, -18.7689, 24.8521)
+
+[node name="Polygon2D5" type="Polygon2D" parent="Coll/Sprite"]
+position = Vector2(28.2051, 0)
+scale = Vector2(0.782184, 0.619048)
+color = Color(0.760784, 0.294118, 0.431373, 1)
+polygon = PackedVector2Array(-23.6026, -34.7929, 15.735, 0, -23.6026, 34.7929)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Coll/Sprite"]
+position = Vector2(1.92308, 0)
+color = Color(0.654902, 0.192157, 0.411765, 1)
+polygon = PackedVector2Array(-16.5269, -18.4615, -7.29615, -27.6923, 23.4731, 0, -7.29615, 27.6923, -16.5269, 18.4615)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Coll/Sprite"]
+visible = false
+scale = Vector2(0.4, 0.4)
+color = Color(0.522786, 0.0445866, 0.187463, 1)
+polygon = PackedVector2Array(-20.7462, -12.3077, -7.29615, -27.6923, 23.4731, 0, -7.29615, 27.6923, -20.7462, 12.3077)
+
+[node name="PathFinding" parent="." instance=ExtResource("3_q1rh4")]
+
+[node name="NewPathTimer" parent="." instance=ExtResource("4_vqc08")]
+unique_name_in_owner = true
+
+[node name="UnSlowTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fmtlx")
+}
+
+[node name="HPBar" parent="." instance=ExtResource("5_jdwkj")]
+offset_left = -60.0
+offset_top = -80.0
+offset_right = 60.0
+offset_bottom = -60.0
+step = 0.0
+
+[connection signal="shooted" from="." to="." method="_on_shooted"]
+[connection signal="body_entered" from="Coll/MoveRange" to="." method="_on_move_range_body_entered"]
+[connection signal="body_exited" from="Coll/MoveRange" to="." method="_on_move_range_body_exited"]
+[connection signal="timeout" from="NewPathTimer" to="." method="_on_new_path_timer_timeout"]

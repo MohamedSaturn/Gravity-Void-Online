@@ -1,0 +1,569 @@
+[gd_scene load_steps=37 format=3 uid="uid://cs7518nn5s1ek"]
+
+[ext_resource type="Script" uid="uid://cq8pwk2h5ldyt" path="res://Components/Modes/MyWorld.gd" id="1_l4vhh"]
+[ext_resource type="PackedScene" uid="uid://d02r231secnym" path="res://Components/PLayer/Player.tscn" id="2_80df2"]
+[ext_resource type="PackedScene" uid="uid://dlmls1vdwvj2v" path="res://Components/Enemies/RangeEnemy/RangedEnemy.tscn" id="3_42xt2"]
+[ext_resource type="PackedScene" uid="uid://b8blu3acvjxrk" path="res://Components/Enemies/SniperEnemy/SniperEnemy.tscn" id="4_5jomy"]
+[ext_resource type="PackedScene" uid="uid://pb078acks2mm" path="res://Components/UI/MyWorldUI/PauseDialog.tscn" id="4_o3f1e"]
+[ext_resource type="Theme" uid="uid://cmna0g20fqtvi" path="res://Assets/Res/GameTheme.tres" id="4_ww57g"]
+[ext_resource type="PackedScene" uid="uid://cvgglf0ulkmiy" path="res://Components/UI/MyWorldUI/Time.tscn" id="5_gpbf5"]
+[ext_resource type="PackedScene" uid="uid://bieb7w0h6rrnq" path="res://Components/UI/MainMenu/ControleDialog/PowerControle.tscn" id="5_wiu2e"]
+[ext_resource type="PackedScene" uid="uid://c0bwjf2vjrosg" path="res://Components/Enemies/TankEnemy/TankEnemy.tscn" id="6_1200b"]
+[ext_resource type="PackedScene" uid="uid://if54kmj10seq" path="res://Components/JoyStick/joystick.tscn" id="7_auh0x"]
+[ext_resource type="StyleBox" uid="uid://625te4uueyes" path="res://Assets/Res/background.tres" id="8_auh0x"]
+[ext_resource type="PackedScene" uid="uid://cwmdqr2mvkj6n" path="res://Components/UI/MyWorldUI/DeathDialog.tscn" id="8_oss6a"]
+[ext_resource type="PackedScene" uid="uid://wn1t0oc8ubdx" path="res://Components/Enemies/Boss/BossEnemy.tscn" id="9_t74ef"]
+[ext_resource type="PackedScene" uid="uid://u60fc2l3o3eh" path="res://Components/Enemies/EnemyBullet.tscn" id="10_wuvfh"]
+[ext_resource type="PackedScene" uid="uid://chskwqkhg71td" path="res://Components/Enemies/FastEnemy/FastEnemy.tscn" id="11_auh0x"]
+[ext_resource type="Script" uid="uid://dg1r3m1hx1h13" path="res://Components/JoyStick/joystick_control.gd" id="11_nxe1x"]
+[ext_resource type="Texture2D" uid="uid://cx1qq0q2nwks5" path="res://Assets/GIU/dash3.png" id="12_8ggpi"]
+[ext_resource type="Texture2D" uid="uid://c573d8gfnf4rh" path="res://Assets/GIU/ult1.png" id="14_0qgo6"]
+[ext_resource type="Texture2D" uid="uid://ci4og3ddlk7uk" path="res://Assets/Sprites/triangle.png" id="14_auh77"]
+[ext_resource type="Texture2D" uid="uid://ciimcmc1xmhvs" path="res://Assets/GIU/attack_mele.png" id="16_auh77"]
+
+[sub_resource type="Environment" id="Environment_g8ir7"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.4
+glow_strength = 1.6
+glow_bloom = 0.55
+glow_hdr_threshold = 0.68
+glow_hdr_scale = 1.47
+glow_hdr_luminance_cap = 43.64
+glow_map_strength = 0.78
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0bpr1"]
+vertices = PackedVector2Array(727.281, -727.281, 1234.13, -727.281, 1234.13, 727.281, 727.281, 727.281, 727.281, 1234.13, -727.281, 1234.13, -727.281, 727.281, -727.281, -727.281, -1234.13, 727.281, -1234.13, -727.281, 727.281, -1234.13, -727.281, -1234.13)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(6, 8, 9, 7), PackedInt32Array(10, 0, 7, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2304, -2304, 2304, 2048, -2304, 2048, -2304, -2304)])
+agent_radius = 33.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_auh0x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_auh77"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.556863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxe1x"]
+bg_color = Color(0.333595, 0.733569, 0.741536, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ggpi"]
+bg_color = Color(0.188235, 0.807843, 0.411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qgo6"]
+bg_color = Color(0.235294, 0.160784, 0.839216, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wuvfh"]
+font_size = 19
+outline_color = Color(0.0852864, 0.0852864, 0.0852864, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.360784)
+
+[sub_resource type="Animation" id="Animation_nxe1x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseDialog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(665, 210.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseDialog:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PauseDialog:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8ggpi"]
+resource_name = "pause_game"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PauseDialog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(665, 900), Vector2(665, 210.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseDialog:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0qgo6"]
+_data = {
+&"RESET": SubResource("Animation_nxe1x"),
+&"pause_game": SubResource("Animation_8ggpi")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxe1x"]
+radius = 268.86
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ggpi"]
+radius = 365.84
+
+[sub_resource type="Curve" id="Curve_ju6up"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tjnj5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxe1x"]
+font_size = 33
+
+[node name="Boss1Fight" type="Node2D"]
+script = ExtResource("1_l4vhh")
+fast_enemy = ExtResource("11_auh0x")
+ranged_enemy = ExtResource("3_42xt2")
+sniper_enemy = ExtResource("4_5jomy")
+power_control = ExtResource("5_wiu2e")
+tank_enemy = ExtResource("6_1200b")
+spawn_delay_time = 5.0
+spawn_enemies = true
+spawn_boss = false
+game_type = "score"
+
+[node name="Player" parent="." instance=ExtResource("2_80df2")]
+unique_name_in_owner = true
+rotation = -1.57079
+collision_layer = 9
+max_speed = 160
+acceleration = 5000
+friction = 2500
+damage_time = 0.1
+attack_type = "mele"
+bullet_speed = 750
+bullet_scale = 1.1
+sword_damage = 20
+sword_health_attack = 5
+dash_step_charge = 1.5
+dash_max_charge = 200
+dash_speed = 600
+ability_modulate = Color(0.235294, 0.160784, 0.839216, 1)
+ability_max_charge = 13
+auto_chrge_ult = true
+max_speed_ability_ss = 1.3
+bullet_speed_ability_ss = 1.3
+fire_rate_ability_ss = 0.8
+spread_angle_ss = 20
+bullet_damage_ability_ss = 2.5
+bullet_scale_ability_ss = 1.5
+bullet_anim_scale_speed_ss = 0.7
+max_speed_ability_oo = 1.0
+bullet_damage_ability_oo = 1.0
+fire_rate_ability_oo = 0.1
+damage_scale_ability_oo = 0.5
+bullet_scale_ability_oo = 1.2
+spread_angle_m_oo = 15
+bullet_anim_scale_speed_oo = 1.5
+bullet_speed_ability_hh = 1.0
+fire_rate_ability_hh = 0.33
+bullet_scale_ability_hh = 1.2
+fanger_dash_speed = 1600
+fanger_max_distance = 600
+popup_dash_color = Color(0.163693, 0.653802, 0.663411, 1)
+popup_damage_color = Color(0.882161, 0.451993, 0.451993, 1)
+popup_enemy_damaged_color = Color(0.858961, 0.944661, 0.626699, 1)
+popup_damage_wow_color = Color(0.76348, 0.944661, 0.272451, 1)
+popup_health_color = Color(0.187033, 0.809245, 0.411029, 1)
+popup_ability_charged_color = Color(0.235294, 0.160784, 0.839216, 1)
+platform_type = "Android"
+set_platform_name = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g8ir7")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0bpr1")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="StaticBody2D" parent="NavigationRegion2D" groups=["collisions"]]
+unique_name_in_owner = true
+scale = Vector2(0.7, 0.7)
+disable_mode = 1
+collision_layer = 255
+collision_mask = 255
+physics_material_override = SubResource("PhysicsMaterial_auh0x")
+
+[node name="WallCollision" type="CollisionPolygon2D" parent="NavigationRegion2D/Wall"]
+unique_name_in_owner = true
+rotation = -0.785397
+polygon = PackedVector2Array(-2048, 512, -1536, 0, -2048, -512, -1536, -1024, -1024, -1536, -512, -2048, 0, -1536, 512, -2048, 1024, -1536, 1536, -1024, 2048, -512, 1536, 0, 2048, 512, 1536, 1024, 1024, 1536, 512, 2048, 0, 1536, -512, 2048, -1024, 1536, -1536, 1024, -4131, 1333, 244.464, 5786.15, 5567.96, 145.455, 33.3284, -5530.59, -5382.09, -119.191, -2258.7, 2682.97, -1536, 1024)
+
+[node name="WallColor" type="Polygon2D" parent="NavigationRegion2D/Wall"]
+unique_name_in_owner = true
+color = Color(0.849863, 0.838535, 0.939453, 1)
+
+[node name="BOSS" parent="." instance=ExtResource("9_t74ef")]
+unique_name_in_owner = true
+position = Vector2(0, -600)
+speed = 50
+max_health = 2500
+die_parti_amount = 33
+attack_delay_time = 4.0
+bullets_color = Color(0.74, 0.0962, 0.28934, 1)
+bullet_attack_1_speed = 450
+bullet_attack_1_damage = 9
+spread_angle_1 = 15
+delay_bet_atts_1 = 0.5
+num_of_attakcs_1 = 5
+addi_range_1 = 1.3
+ability_attack_1_bullet_scale = 1.1
+bullet_attack_2_speed = 1000
+bullet_attack_2_damage = 25
+delay_bet_atts_2 = 0.0
+num_of_attakcs_2 = 1
+bullet_scene_3 = ExtResource("10_wuvfh")
+bullet_attack_3_speed = 550
+bullet_attack_3_damage = 12
+bullets_count_3 = 40
+attacks_count_3 = 1
+bullet_spawn_time_3 = 0.25
+attack_delay_time_3 = 0.0
+spread_angle_3 = 55
+fast_enemy_scene = ExtResource("11_auh0x")
+fast_enemy_damage = 7
+fast_enemy_max_speed = 230
+fast_enemy_health = 1
+attack_4_wait_time = 2.0
+ability_damage = 1.25
+ability_speed = 1.0
+ability_color = Color(0.336166, 0.0512496, 0.600911, 1)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ww57g")
+metadata/_edit_lock_ = true
+
+[node name="TopDialog" type="VBoxContainer" parent="GUI/Control"]
+modulate = Color(1, 1, 1, 0.964706)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 7
+alignment = 2
+
+[node name="MarginContainer" type="PanelContainer" parent="GUI/Control/TopDialog"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_auh77")
+metadata/_edit_lock_ = true
+
+[node name="Pause" type="Button" parent="GUI/Control/TopDialog/MarginContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 22
+text = "Pause"
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Control/TopDialog/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 9
+
+[node name="DashBar" type="ProgressBar" parent="GUI/Control/TopDialog/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(260, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/background = ExtResource("8_auh0x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nxe1x")
+value = 50.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="GUI/Control/TopDialog/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 33)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = ExtResource("8_auh0x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8ggpi")
+value = 50.0
+show_percentage = false
+
+[node name="UltBar" type="ProgressBar" parent="GUI/Control/TopDialog/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(260, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/background = ExtResource("8_auh0x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0qgo6")
+value = 50.0
+show_percentage = false
+
+[node name="Fps" type="Label" parent="GUI/Control/TopDialog/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "FPS:60"
+
+[node name="Time" parent="GUI/Control/TopDialog/MarginContainer" instance=ExtResource("5_gpbf5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "6:66"
+
+[node name="Ability" type="Label" parent="GUI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 47.0
+offset_bottom = 12.0
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_wuvfh")
+
+[node name="PauseManager" type="ColorRect" parent="GUI/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="PauseDialog" parent="GUI/Control/PauseManager" instance=ExtResource("4_o3f1e")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_top = -149.5
+offset_bottom = 91.5
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PauseAnim" type="AnimationPlayer" parent="GUI/Control/PauseManager"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0qgo6")
+}
+
+[node name="DeathDialog" parent="GUI/Control" instance=ExtResource("8_oss6a")]
+unique_name_in_owner = true
+layout_mode = 1
+color = Color(0, 0, 0, 0.360784)
+
+[node name="JoystickControl" type="Control" parent="GUI/Control"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_nxe1x")
+
+[node name="MoveJoystick" parent="GUI/Control/JoystickControl" instance=ExtResource("7_auh0x")]
+unique_name_in_owner = true
+modulate = Color(0.666667, 0.823529, 0.898039, 1)
+position = Vector2(150, 570)
+rotation = 3.14159
+
+[node name="AimJoystick" parent="GUI/Control/JoystickControl" instance=ExtResource("7_auh0x")]
+unique_name_in_owner = true
+modulate = Color(0.705078, 0.181319, 0.318397, 1)
+position = Vector2(1443, 570)
+
+[node name="DashPregressBar" type="TextureProgressBar" parent="GUI/Control/JoystickControl"]
+unique_name_in_owner = true
+modulate = Color(0.164706, 0.654902, 0.662745, 1)
+layout_mode = 0
+offset_left = 1113.0
+offset_top = 287.0
+offset_right = 1369.0
+offset_bottom = 543.0
+scale = Vector2(0.75, 0.75)
+step = 0.01
+value = 50.0
+fill_mode = 5
+texture_under = ExtResource("12_8ggpi")
+texture_progress = ExtResource("12_8ggpi")
+tint_under = Color(0.75, 0.75, 0.75, 1)
+
+[node name="DashTouchButton" type="TouchScreenButton" parent="GUI/Control/JoystickControl/DashPregressBar"]
+unique_name_in_owner = true
+position = Vector2(126.667, 128.889)
+scale = Vector2(0.244444, 0.244444)
+shape = SubResource("CircleShape2D_nxe1x")
+
+[node name="AbilityTouchButton" type="TouchScreenButton" parent="GUI/Control/JoystickControl"]
+unique_name_in_owner = true
+position = Vector2(1066, 589)
+scale = Vector2(0.15, 0.15)
+shape = SubResource("CircleShape2D_8ggpi")
+
+[node name="ultpart" type="CPUParticles2D" parent="GUI/Control/JoystickControl/AbilityTouchButton"]
+unique_name_in_owner = true
+modulate = Color(0.176471, 0.133333, 0.509804, 1)
+amount = 4
+texture = ExtResource("14_auh77")
+lifetime = 3.5
+speed_scale = 8.0
+randomness = 1.0
+fixed_fps = 30
+draw_order = 1
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+angular_velocity_min = 30.0
+angular_velocity_max = 120.0
+angle_curve = SubResource("Curve_ju6up")
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_tjnj5")
+
+[node name="UltProgressBar" type="TextureProgressBar" parent="GUI/Control/JoystickControl/AbilityTouchButton"]
+unique_name_in_owner = true
+modulate = Color(0.29092, 0.2184, 0.84, 1)
+offset_left = -511.363
+offset_top = -511.364
+offset_right = -255.363
+offset_bottom = -255.364
+scale = Vector2(4, 4)
+step = 0.01
+fill_mode = 5
+texture_under = ExtResource("14_0qgo6")
+texture_progress = ExtResource("14_0qgo6")
+tint_under = Color(0.75, 0.75, 0.75, 1)
+
+[node name="SwipeAttackTouchBtn" type="TouchScreenButton" parent="GUI/Control/JoystickControl"]
+unique_name_in_owner = true
+modulate = Color(0.705078, 0.181319, 0.318397, 1)
+position = Vector2(1391, 214)
+scale = Vector2(0.475, 0.475)
+texture_normal = ExtResource("16_auh77")
+
+[node name="timer_label" type="Label" parent="GUI"]
+unique_name_in_owner = true
+visible = false
+offset_left = 1160.0
+offset_top = 64.0
+offset_right = 1282.0
+offset_bottom = 104.0
+text = "time"
+label_settings = SubResource("LabelSettings_nxe1x")
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="Spawners"]
+unique_name_in_owner = true
+
+[node name="SpawnPoint1" type="Marker2D" parent="Spawners"]
+unique_name_in_owner = true
+position = Vector2(900, 0)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint2" type="Marker2D" parent="Spawners"]
+unique_name_in_owner = true
+position = Vector2(-900, 0)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint3" type="Marker2D" parent="Spawners"]
+unique_name_in_owner = true
+position = Vector2(0, -900)
+gizmo_extents = 50.0
+
+[node name="SpawnPoint4" type="Marker2D" parent="Spawners"]
+unique_name_in_owner = true
+position = Vector2(0, 900)
+gizmo_extents = 50.0
+
+[node name="HarderTimer" type="Timer" parent="Spawners"]
+wait_time = 30.0
+autostart = true
+
+[connection signal="pressed" from="GUI/Control/TopDialog/MarginContainer/Pause" to="." method="_on_pause_pressed"]
+[connection signal="value_changed" from="GUI/Control/TopDialog/MarginContainer/HBoxContainer/UltBar" to="Player" method="_on_ult_bar_value_changed"]
+[connection signal="continue_pressed" from="GUI/Control/PauseManager/PauseDialog" to="." method="_on_pause_dialog_continue_pressed"]
+[connection signal="visibility_changed" from="GUI/Control/DeathDialog" to="." method="_on_death_dialog_visibility_changed"]
+[connection signal="pressed" from="GUI/Control/JoystickControl/DashPregressBar/DashTouchButton" to="Player" method="_on_dash_touch_button_pressed"]
+[connection signal="pressed" from="GUI/Control/JoystickControl/AbilityTouchButton" to="Player" method="_on_ability_touch_button_pressed"]
+[connection signal="pressed" from="GUI/Control/JoystickControl/SwipeAttackTouchBtn" to="Player" method="_on_swipe_attack_touch_btn_pressed"]
+[connection signal="timeout" from="Spawners/HarderTimer" to="." method="_on_harder_timer_timeout"]

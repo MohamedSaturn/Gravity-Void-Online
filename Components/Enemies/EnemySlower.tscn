@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi74eh7r7mn80"]
+
+[ext_resource type="Script" uid="uid://b55np2fucuwn7" path="res://Components/Enemies/EnemySlower.gd" id="1_5f2u1"]
+[ext_resource type="Texture2D" uid="uid://knl2o3tpeyxy" path="res://Assets/Sprites/cyrcle512.png" id="2_gxbko"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52pwk"]
+radius = 102.044
+
+[sub_resource type="Animation" id="Animation_70l0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.152941)]
+}
+
+[sub_resource type="Animation" id="Animation_oa6ie"]
+resource_name = "des"
+length = 3.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(8.177, 8),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.141176), Color(1, 1, 1, 0.160784), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcfj3"]
+_data = {
+&"RESET": SubResource("Animation_70l0i"),
+&"des": SubResource("Animation_oa6ie")
+}
+
+[node name="EnemySlower" type="Area2D"]
+z_index = -1
+scale = Vector2(1.6, 1.6)
+collision_layer = 3
+collision_mask = 7
+script = ExtResource("1_5f2u1")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_52pwk")
+one_way_collision_margin = 0.0
+debug_color = Color(0, 0, 0, 0.0235294)
+
+[node name="Sprite2D" type="Sprite2D" parent="Coll"]
+modulate = Color(1, 1, 1, 0.152941)
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(0.422317, 0.422317)
+texture = ExtResource("2_gxbko")
+
+[node name="DesTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bcfj3")
+}
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

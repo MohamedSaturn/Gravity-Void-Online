@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://5h3ksm26qcv2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yoq75"]
+size = Vector2(62.6263, 64.6465)
+
+[node name="FangerArea" type="Area2D"]
+scale = Vector2(0.99, 0.99)
+collision_layer = 3
+collision_mask = 3
+monitoring = false
+
+[node name="FangerCollision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-23.2323, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_yoq75")
+debug_color = Color(1, 0.152995, 0.152995, 0.603922)
+
+[node name="Fanger" type="Polygon2D" parent="FangerCollision"]
+unique_name_in_owner = true
+modulate = Color(0.235294, 0.160784, 0.839216, 1)
+position = Vector2(-11.1111, 0)
+scale = Vector2(1.0101, 1.0101)
+color = Color(1, 1, 1, 0.372549)
+polygon = PackedVector2Array(72.7273, 0, 24.2424, -96.9697, 18.1818, -54.5454, -72.7273, -72.7273, -48.4848, -42.4242, -242.424, 0, -48.4848, 42.4242, -72.7273, 72.7273, 18.1818, 54.5454, 24.2424, 96.9697)
+
+[node name="Head" type="Polygon2D" parent="FangerCollision/Fanger"]
+color = Color(1, 1, 1, 0.780392)
+polygon = PackedVector2Array(72.7273, 0, 48.4848, 48.4848, 90.9091, 36.3636, 72.7273, 15.1515, 106.061, 0, 72.7273, -15.1515, 90.9091, -36.3636, 48.4848, -48.4848)

@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://5y2tb16m0fur"]
+
+[ext_resource type="Script" uid="uid://3fi23ikui3nb" path="res://Components/UI/MainMenu/ControleDialog/ModesDialog.gd" id="1_bta4t"]
+[ext_resource type="Theme" uid="uid://cmna0g20fqtvi" path="res://Assets/Res/GameTheme.tres" id="1_dousd"]
+[ext_resource type="PackedScene" uid="uid://bmrc5tg2dd2ca" path="res://Assets/fragment-skin.tscn" id="3_aw3wn"]
+[ext_resource type="FontFile" uid="uid://dooxgxony7r75" path="res://Assets/Fonts/static/LibreBaskerville-Bold.ttf" id="4_o8xle"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_er0qx"]
+
+[sub_resource type="Gradient" id="Gradient_aw3wn"]
+offsets = PackedFloat32Array(0, 0.4321608)
+colors = PackedColorArray(0.58410645, 0.62251604, 0.859375, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aw3wn"]
+gradient = SubResource("Gradient_aw3wn")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[sub_resource type="Environment" id="Environment_atbmw"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_levels/1 = 1.6
+glow_levels/3 = 15.31
+glow_normalized = true
+glow_intensity = 3.66
+glow_strength = 0.46
+glow_bloom = 0.86
+glow_hdr_threshold = 1.08
+glow_hdr_scale = 1.54
+glow_hdr_luminance_cap = 57.73
+glow_map_strength = 0.51
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.5966797, 0.68113106, 0.8125, 1)
+fog_light_energy = 3.22
+fog_density = 1.0
+
+[sub_resource type="Animation" id="Animation_o8xle"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_atbmw"]
+resource_name = "new_animation"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(0.2253126, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(14, 14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(2.5491211, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rp45t"]
+_data = {
+&"RESET": SubResource("Animation_o8xle"),
+&"new_animation": SubResource("Animation_atbmw")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnhff"]
+font = ExtResource("4_o8xle")
+font_size = 99
+shadow_size = 0
+
+[sub_resource type="Theme" id="Theme_alf2j"]
+default_font_size = 40
+
+[node name="ModesDialog" type="PanelContainer" unique_id=1538048143]
+custom_minimum_size = Vector2(250, 250)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dousd")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_er0qx")
+script = ExtResource("1_bta4t")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1810590676]
+z_index = -6
+position = Vector2(800, 360)
+scale = Vector2(29.999998, 29.999998)
+color = Color(0.37135306, 0.33395895, 0.6731771, 1)
+energy = 2.45
+texture = SubResource("GradientTexture2D_aw3wn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1099194916]
+environment = SubResource("Environment_atbmw")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1800026193]
+position = Vector2(800, 360)
+
+[node name="Fragment" parent="Node2D" unique_id=600087500 instance=ExtResource("3_aw3wn")]
+z_index = 2
+position = Vector2(0, -3)
+rotation = -6.2831855
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D" unique_id=1327472589]
+z_index = 1
+color = Color(0.26666668, 0.28627452, 0.5019608, 0.3372549)
+polygon = PackedVector2Array(-80, 0, 0, 120, 80, 0, 0, -136)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=1768230747]
+libraries/ = SubResource("AnimationLibrary_rp45t")
+autoplay = &"new_animation"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=177630686]
+layout_mode = 2
+color = Color(0.101960786, 0.12156863, 0.2509804, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=346411131]
+layout_mode = 2
+theme_override_constants/margin_left = 66
+theme_override_constants/margin_top = 66
+theme_override_constants/margin_right = 66
+theme_override_constants/margin_bottom = 66
+
+[node name="Label" type="Label" parent="MarginContainer2" unique_id=526469500]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "GRAVITY VOID"
+label_settings = SubResource("LabelSettings_lnhff")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1326532968]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = SubResource("Theme_alf2j")
+theme_override_constants/separation = 22
+
+[node name="FFAButton" type="Button" parent="MarginContainer2/VBoxContainer" unique_id=567122451]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+text = "Play"
+flat = true
+
+[node name="CloseBtn" type="Button" parent="MarginContainer2/VBoxContainer" unique_id=1219101347]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+text = "Quit"
+flat = true
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=1670040342]
+position = Vector2(800, 357)
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/FFAButton" to="." method="_on_ffa_button_pressed"]

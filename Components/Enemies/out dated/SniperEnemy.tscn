@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b8blu3acvjxrk"]
+
+[ext_resource type="PackedScene" uid="uid://dlmls1vdwvj2v" path="res://Components/Enemies/out dated/RangedEnemy.tscn" id="1_guy8k"]
+[ext_resource type="Script" uid="uid://bnjicrr626phy" path="res://Components/Enemies/SniperEnemy/sniper_enemy.gd" id="2_fddhl"]
+
+[node name="SniperEnemy" unique_id=263606120 instance=ExtResource("1_guy8k")]
+script = ExtResource("2_fddhl")
+fire_rate = 6.0
+ranged_type = "sniper"
+bullet_speed = 870
+bullet_damage = 23
+bullet_range = 950
+bullet_scale = 0.5
+speed = 80
+max_health = 26
+die_parti_amount = 2
+main_color = Color(0.286275, 0.203922, 0.45098, 1)
+
+[node name="CollisionShape2D" parent="Coll/MoveRange" parent_id_path=PackedInt32Array(457578420) index="0" unique_id=750915996]
+position = Vector2(94.9991, 0)
+
+[node name="Polygon2D4" parent="Coll/Sprite" parent_id_path=PackedInt32Array(101634374) index="0" unique_id=849952668]
+color = Color(0.286121, 0.204726, 0.44987, 1)
+polygon = PackedVector2Array(-18.3575, -28.9941, 20, 0, -18.3575, 28.9941)
+
+[node name="Polygon2D5" parent="Coll/Sprite" parent_id_path=PackedInt32Array(101634374) index="1" unique_id=172673850]
+position = Vector2(23.4731, 0)
+color = Color(0.286275, 0.203922, 0.45098, 1)
+polygon = PackedVector2Array(-19.6688, -29.8225, 39.3376, 0, -19.6688, 29.8225, -49.7084, 0)
+
+[node name="Polygon2D6" type="Polygon2D" parent="Coll/Sprite" parent_id_path=PackedInt32Array(101634374) index="2" unique_id=1282256291]
+visible = false
+position = Vector2(23.4731, 0)
+scale = Vector2(0.782184, 0.619048)
+color = Color(0.803922, 0.207843, 0.384314, 1)
+polygon = PackedVector2Array(-19.6688, -29.8225, 14.6622, 0, -19.6688, 29.8225, -49.7084, 0)
+
+[node name="Polygon2D2" parent="Coll/Sprite" parent_id_path=PackedInt32Array(101634374) index="3" unique_id=1538016957]
+color = Color(0.423149, 0.265137, 0.522786, 1)
+polygon = PackedVector2Array(-16.5269, -15.3846, -7.29615, -24.6154, 20.3962, 0, -7.29615, 24.6154, -16.5269, 15.3846)
+
+[node name="Polygon2D3" parent="Coll/Sprite" parent_id_path=PackedInt32Array(101634374) index="4" unique_id=2059404607]
+position = Vector2(-2.68077, 0)
+color = Color(0.455078, 0.0364418, 0.161522, 1)
+
+[node name="HPBar" parent="." index="5" unique_id=975063745]
+offset_top = -84.0
+offset_bottom = -69.0
+metadata/_edit_use_anchors_ = true

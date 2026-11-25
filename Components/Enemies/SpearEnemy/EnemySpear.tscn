@@ -1,0 +1,206 @@
+[gd_scene load_steps=8 format=3 uid="uid://csxwe35183knh"]
+
+[ext_resource type="Script" uid="uid://85w63i6w0g86" path="res://Components/Enemies/SpearEnemy/EnemySpear.gd" id="1_3irld"]
+[ext_resource type="Texture2D" uid="uid://ci4og3ddlk7uk" path="res://Assets/Sprites/triangle.png" id="2_vx0f7"]
+
+[sub_resource type="Gradient" id="Gradient_xih1q"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_r76bh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explode:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ejavc"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(4.59478, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_o1bas"]
+resource_name = "throw_spear"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coll:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coll:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(3.36357, 2.73208),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explode:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(2.82843, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1phi7"]
+_data = {
+&"RESET": SubResource("Animation_r76bh"),
+&"attack": SubResource("Animation_ejavc"),
+&"throw_spear": SubResource("Animation_o1bas")
+}
+
+[node name="EnemySpear" type="Area2D"]
+collision_layer = 129
+collision_mask = 129
+script = ExtResource("1_3irld")
+speed = 500
+
+[node name="Explode" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 6
+texture = ExtResource("2_vx0f7")
+lifetime = 1.5
+one_shot = true
+speed_scale = 3.2
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 70.0
+linear_accel_min = 16.24
+linear_accel_max = 16.24
+angle_min = -178.6
+angle_max = 436.0
+scale_amount_min = 0.05
+scale_amount_max = 0.15
+color_ramp = SubResource("Gradient_xih1q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_1phi7")
+}
+
+[node name="Coll" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.7, 1.7)
+polygon = PackedVector2Array(65.2941, 0, 28.2353, -14.1176, 28.2353, 14.1176)
+
+[node name="Sprite" type="Node2D" parent="Coll"]
+scale = Vector2(1.2, 1.2)
+
+[node name="Wood" type="Polygon2D" parent="Coll/Sprite"]
+scale = Vector2(1, 0.75)
+color = Color(1, 1, 1, 0.352941)
+polygon = PackedVector2Array(-32.9412, -4.70588, -32.9412, 4.70588, 28.2353, 4.70588, 28.2353, -4.70588)
+
+[node name="Arrow2" type="Polygon2D" parent="Coll/Sprite"]
+position = Vector2(28, 0)
+color = Color(1, 1, 1, 0.215686)
+polygon = PackedVector2Array(8, -8, 26, 0, 8, 8)
+
+[node name="Arrow" type="Polygon2D" parent="Coll/Sprite"]
+position = Vector2(18, 0)
+polygon = PackedVector2Array(8, -10, 28, 0, 8, 10)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
